@@ -1,6 +1,0 @@
-TEST
-====
-
-  * test
-  * test
-  * test
