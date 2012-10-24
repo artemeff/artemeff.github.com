@@ -5,4 +5,3 @@
 #= require open_source
 
 # it's all sprokets guys. Write like in rails)
-# @todo: add my creative folio
