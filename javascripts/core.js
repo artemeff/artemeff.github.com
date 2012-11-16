@@ -1,0 +1,1 @@
+(function(){$(function(){return $(".archive_year").click(function(e){var t;return e.preventDefault(),t=$(this).attr("data-year"),$(".archive_year").removeClass("active"),$(this).addClass("active"),$(".archive_for:visible").fadeOut("fast","linear",function(){return $("#archive_for_"+t).fadeIn("fast")})})})}).call(this);
