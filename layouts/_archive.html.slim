@@ -1,0 +1,19 @@
+.post.archive
+  .meta
+    h6 Архив
+
+    - blog.articles.group_by { |a| a.date.year }.each do |year, articles|
+      a class="archive_year #{"active" if Time.now.year == year}" data-year="#{year}" href="#" title="#{year}" = year
+      br
+
+  .article
+    - blog.articles.group_by {|a| a.date.year }.each do |year, articles|
+      div.archive_for id="archive_for_#{year}" style="#{"display:none" unless Time.now.year == year}"
+        - articles.each do |article|
+          span
+            .date
+              = article.date.strftime "%B %d"
+
+            |  «
+            a href="#{article.url}" title="#{article.title}" = article.title
+            | »
