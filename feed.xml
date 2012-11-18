@@ -5,10 +5,26 @@
   <id>http://blog.url.com/</id>
   <link href="http://blog.url.com/"/>
   <link href="http://blog.url.com/feed.xml" rel="self"/>
-  <updated>2012-11-15T20:00:00Z</updated>
+  <updated>2012-11-17T20:00:00Z</updated>
   <author>
     <name>Blog Author</name>
   </author>
+  <entry>
+    <title>Обновление бложика</title>
+    <link rel="alternate" href="/blog/2012/Blog-updates.html"/>
+    <id>/blog/2012/Blog-updates.html</id>
+    <published>2012-11-17T20:00:00Z</published>
+    <updated>2012-11-17T20:00:00Z</updated>
+    <author>
+      <name>Article Author</name>
+    </author>
+    <summary type="html">&lt;p&gt;Всем привет, это будет еще один бесполезный пост о разработке простейшего блога. Middleman не перестает меня радовать, я таки понял где зарылась проблема с тегами, надо было просто указать для них путь в конфигурации, странно что оно не влючено «по дефолту», ну да ладно.&lt;/p&gt;</summary>
+    <content type="html">&lt;p&gt;Всем привет, это будет еще один бесполезный пост о разработке простейшего блога. Middleman не перестает меня радовать, я таки понял где зарылась проблема с тегами, надо было просто указать для них путь в конфигурации, странно что оно не влючено «по дефолту», ну да ладно.&lt;/p&gt;
+
+&lt;p&gt;Обновил свой бложик, добавил теги, страницы «&lt;a href='/projects.html'&gt;Проекты&lt;/a&gt;», «&lt;a href='/contacts.html'&gt;Контакты&lt;/a&gt;», «&lt;a href='/about_me.html'&gt;Кто такой?&lt;/a&gt;», правда страницу с проектами надо бы доделать. Добавил &lt;a href='/feed.xml'&gt;rss фид&lt;/a&gt; &amp;#8212; подписывайтесь, если вообще читаете это.&lt;/p&gt;
+
+&lt;p&gt;Следующий пост обещает быть намного интереснее, там расскажу о недавнем тесте SSD vs RAM vs HDD, где я тестировал Rails приложение на разных дисках, кстати, RAM &amp;#8212; там я просто смонтировал раздел в оперативной памяти и поместил туда приложеньку.&lt;/p&gt;</content>
+  </entry>
   <entry>
     <title>Первый пост в моем html блоге</title>
     <link rel="alternate" href="/blog/2012/First-post-on-my-html-blog.html"/>
