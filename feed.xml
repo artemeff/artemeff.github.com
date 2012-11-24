@@ -5,10 +5,96 @@
   <id>http://blog.url.com/</id>
   <link href="http://blog.url.com/"/>
   <link href="http://blog.url.com/feed.xml" rel="self"/>
-  <updated>2012-11-17T20:00:00Z</updated>
+  <updated>2012-11-23T20:00:00Z</updated>
   <author>
     <name>Blog Author</name>
   </author>
+  <entry>
+    <title>Тестируем RAM, SSD и HDD на скорость</title>
+    <link rel="alternate" href="/blog/2012/Ram-ssd-hdd.html"/>
+    <id>/blog/2012/Ram-ssd-hdd.html</id>
+    <published>2012-11-23T20:00:00Z</published>
+    <updated>2012-11-23T20:00:00Z</updated>
+    <author>
+      <name>Article Author</name>
+    </author>
+    <summary type="html">&lt;p&gt;Сейчас я потихньку занимаюсь своим проектом, когда есть свободное время, и вот недавно выпал вопрос о железе для хостинга. Облака я рассматривать пока не буду, т.к. железки там сказать в принципе не смогут, только если везде стоят одни и те-же. Кстати, скоро ко мне попадет в руки тестовый аккаунт на новой облачной площадке, там и потестирую что и как быстро работает. А сейчас я хочу рассказать о производительности SSD vs &lt;a href='http://ru.wikipedia.org/wiki/RAM_drive'&gt;RAM Drive&lt;/a&gt; vs HDD.&lt;/p&gt;</summary>
+    <content type="html">&lt;p&gt;Сейчас я потихньку занимаюсь своим проектом, когда есть свободное время, и вот недавно выпал вопрос о железе для хостинга. Облака я рассматривать пока не буду, т.к. железки там сказать в принципе не смогут, только если везде стоят одни и те-же. Кстати, скоро ко мне попадет в руки тестовый аккаунт на новой облачной площадке, там и потестирую что и как быстро работает. А сейчас я хочу рассказать о производительности SSD vs &lt;a href='http://ru.wikipedia.org/wiki/RAM_drive'&gt;RAM Drive&lt;/a&gt; vs HDD.&lt;/p&gt;
+
+&lt;p&gt;Тесты проводились на компьютере с OS X, 4x4Gb Kingston @ 1333 RAM, Intel Core i3 @ 2.8 Ghz, OCZ Vertex3 @ 120Gb, HDD Seagate ST3000DM001 @ 3Tb. OS X, конечно же, установлена на SSD, Ruby с гемами расположены в домашней папке. Я создал Rails приложение, создал 10.000 записей в sqlite и контроллер со следующим кодом:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;@products = Product.all
+Rails.cache.clear&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;Кстати, записи на странице не рендерил, подумал что это будет лишним.&lt;/p&gt;
+
+&lt;p&gt;Дальше связка nginx + unicorn и тестирование нагрузки. Сначала хотел использовать siege, но что-то там не срослось, давно уже было, не помню :) И таки взял ab.&lt;/p&gt;
+
+&lt;p&gt;Результаты получились очень странными:&lt;/p&gt;
+
+&lt;h2 id='hdd'&gt;HDD&lt;/h2&gt;
+
+&lt;pre&gt;&lt;code&gt;Document Length:      719 bytes
+Concurrency Level:    4
+Time taken for tests: 40.510 seconds
+Complete requests:    100
+Failed requests:      0
+Total transferred:    130600 bytes
+HTML transferred:     71900 bytes
+Requests per second:  2468.54
+Transfer rate:        3223.92 kb/s received
+            Connnection Times (ms)
+            min     avg     max
+Connect:    0       0       0
+Processing: 1193    1596    2400
+Total:      1193    1596    2400&lt;/code&gt;&lt;/pre&gt;
+
+&lt;h2 id='ram_disk'&gt;RAM disk&lt;/h2&gt;
+
+&lt;pre&gt;&lt;code&gt;Document Length:      719 bytes
+Concurrency Level:    4
+Time taken for tests: 39.272 seconds
+Complete requests:    100
+Failed requests:      0
+Total transferred:    130600 bytes
+HTML transferred:     71900 bytes
+Requests per second:  2546.33
+Transfer rate:        3325.51 kb/s received
+            Connnection Times (ms)
+            min     avg     max
+Connect:    0       0       0
+Processing: 366     1546    1645
+Total:      366     1546    1645&lt;/code&gt;&lt;/pre&gt;
+
+&lt;h2 id='ssd'&gt;SSD&lt;/h2&gt;
+
+&lt;pre&gt;&lt;code&gt;Document Length:      719 bytes
+Concurrency Level:    4
+Time taken for tests: 39.274 seconds
+Complete requests:    100
+Failed requests:      0
+Total transferred:    130600 bytes
+HTML transferred:     71900 bytes
+Requests per second:  2546.21
+Transfer rate:        3325.35 kb/s received
+            Connnection Times (ms)
+            min     avg     max
+Connect:    0       0       0
+Processing: 398     1546    1627
+Total:      398     1546    1627&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;И для удобства:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;            Connnection Times (ms)  RPS
+            min     avg     max
+HDD:        1193    1596    2400    2468.54
+RAM Disk:   366     1546    1645    2546.33
+SSD: 398    398     1546    1627    2546.21&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;В следующий раз буду проводить тест SSD vs RAM disk уже на серверной машине, и Ruby с гемами положу в оперативную память, когда буду ее тестировать, а то сейчас, как мне кажется, у RAM не сильный выигрышь просто потому что сам руби был на SSD.&lt;/p&gt;
+
+&lt;p&gt;Ну и в следующий раз постараюсь с графиками, а то голые цифры мне совсем не нравятся.&lt;/p&gt;</content>
+  </entry>
   <entry>
     <title>Обновление бложика</title>
     <link rel="alternate" href="/blog/2012/Blog-updates.html"/>
