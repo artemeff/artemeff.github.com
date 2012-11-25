@@ -5,10 +5,198 @@
   <id>http://blog.url.com/</id>
   <link href="http://blog.url.com/"/>
   <link href="http://blog.url.com/feed.xml" rel="self"/>
-  <updated>2012-11-23T20:00:00Z</updated>
+  <updated>2012-11-24T20:00:00Z</updated>
   <author>
     <name>Blog Author</name>
   </author>
+  <entry>
+    <title>Ruby 2.0, что нас ждет?</title>
+    <link rel="alternate" href="/blog/2012/Ruby-2-0.html"/>
+    <id>/blog/2012/Ruby-2-0.html</id>
+    <published>2012-11-24T20:00:00Z</published>
+    <updated>2012-11-24T20:00:00Z</updated>
+    <author>
+      <name>Article Author</name>
+    </author>
+    <summary type="html">&lt;p&gt;2 ноября &lt;a href="http://www.ruby-lang.org/zh_TW/news/2012/11/02/ruby-2-0-0-preview1-released/"&gt;вышла&lt;/a&gt; &lt;a href="http://blade.nagaokaut.ac.jp/cgi-bin/scat.rb/ruby/ruby-dev/46348"&gt;первая&lt;/a&gt; &lt;a href="https://github.com/ruby/ruby/commit/6b8d4ab840b2d76d356ba30dbccfef4f5fd10767"&gt;версия&lt;/a&gt; Ruby 2.0. По плану, 24 февряля 2013 года выйдет 2.0.0-p0, что значит &amp;mdash; релиз, но пока не для продакшна. &lt;/p&gt;
+</summary>
+    <content type="html">&lt;p&gt;2 ноября &lt;a href="http://www.ruby-lang.org/zh_TW/news/2012/11/02/ruby-2-0-0-preview1-released/"&gt;вышла&lt;/a&gt; &lt;a href="http://blade.nagaokaut.ac.jp/cgi-bin/scat.rb/ruby/ruby-dev/46348"&gt;первая&lt;/a&gt; &lt;a href="https://github.com/ruby/ruby/commit/6b8d4ab840b2d76d356ba30dbccfef4f5fd10767"&gt;версия&lt;/a&gt; Ruby 2.0. По плану, 24 февряля 2013 года выйдет 2.0.0-p0, что значит &amp;mdash; релиз, но пока не для продакшна. &lt;/p&gt;
+&lt;h2 id="daty-vyhoda"&gt;Даты выхода&lt;/h2&gt;
+&lt;ul&gt;
+&lt;li&gt;Начало декабря: 2.0.0-preview2&lt;/li&gt;
+&lt;li&gt;После нового года: 2.0.0-rc1&lt;/li&gt;
+&lt;li&gt;Начало февраля: 2.0.0-rc2&lt;/li&gt;
+&lt;li&gt;24 февраля: 2.0.0-p0&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h2 id="novoe-v-2-0-0"&gt;Новое в 2.0.0&lt;/h2&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;a href="#refinements"&gt;Refinements&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href="#keyword-arguments"&gt;Keyword arguments&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;Enumerator#lazy&lt;/li&gt;
+&lt;li&gt;&lt;a href="#module-prepend"&gt;Module#prepend&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href="#converting-convention-to-hash-to_h"&gt;Converting convention to Hash: #to_h&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href="#i-a-literal-for-symbol-array"&gt;%i: a literal for symbol array&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;Новый движок регулярных выражений &amp;mdash; &lt;a href="https://github.com/k-takata/Onigmo"&gt;Onigmo&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;Поддержка &lt;a href="http://ru.wikipedia.org/wiki/DTrace"&gt;DTrace&lt;/a&gt; (&lt;em&gt;будет в версии preview2&lt;/em&gt;)&lt;/li&gt;
+&lt;li&gt;Импорт/экспорт байткода&lt;/li&gt;
+&lt;li&gt;Стандартные библиотеки станут гемами&lt;/li&gt;
+&lt;li&gt;Переход на UTF&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h3 id="refinements"&gt;Refinements&lt;/h3&gt;
+&lt;p&gt;Давайте рассмотрим следующий кусок кода:&lt;/p&gt;
+&lt;div class="CodeRay"&gt;
+  &lt;div class="code"&gt;&lt;pre&gt;&lt;span class="keyword"&gt;module&lt;/span&gt; &lt;span class="class"&gt;NumberQuery&lt;/span&gt;
+  refine &lt;span class="constant"&gt;String&lt;/span&gt; &lt;span class="keyword"&gt;do&lt;/span&gt;
+    &lt;span class="keyword"&gt;def&lt;/span&gt; &lt;span class="function"&gt;number?&lt;/span&gt;
+      match(&lt;span class="regexp"&gt;&lt;span class="delimiter"&gt;/&lt;/span&gt;&lt;span class="content"&gt;^[1-9][0-9]+$&lt;/span&gt;&lt;span class="delimiter"&gt;/&lt;/span&gt;&lt;/span&gt;) ? &lt;span class="predefined-constant"&gt;true&lt;/span&gt; : &lt;span class="predefined-constant"&gt;false&lt;/span&gt;
+    &lt;span class="keyword"&gt;end&lt;/span&gt;
+  &lt;span class="keyword"&gt;end&lt;/span&gt;
+&lt;span class="keyword"&gt;end&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+&lt;/div&gt;
+
+&lt;p&gt;И попробуем вызвать его:&lt;/p&gt;
+&lt;div class="CodeRay"&gt;
+  &lt;div class="code"&gt;&lt;pre&gt;&lt;span class="keyword"&gt;begin&lt;/span&gt;
+  &lt;span class="string"&gt;&lt;span class="delimiter"&gt;&amp;quot;&lt;/span&gt;&lt;span class="content"&gt;123&lt;/span&gt;&lt;span class="delimiter"&gt;&amp;quot;&lt;/span&gt;&lt;/span&gt;.number?
+&lt;span class="keyword"&gt;rescue&lt;/span&gt; =&amp;gt; e
+  p e  &lt;span class="comment"&gt;#=&amp;gt; #&amp;lt;NoMethodError: undefined method `number?' for &amp;quot;123&amp;quot;:String&amp;gt;&lt;/span&gt;
+&lt;span class="keyword"&gt;end&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+&lt;/div&gt;
+
+&lt;p&gt;Этот метод недоступен в глобальном пространстве, но его можно использовать внутри модуля &lt;strong&gt;NumberQuery&lt;/strong&gt;:&lt;/p&gt;
+&lt;div class="CodeRay"&gt;
+  &lt;div class="code"&gt;&lt;pre&gt;&lt;span class="keyword"&gt;module&lt;/span&gt; &lt;span class="class"&gt;NumberQuery&lt;/span&gt;
+  p &lt;span class="string"&gt;&lt;span class="delimiter"&gt;&amp;quot;&lt;/span&gt;&lt;span class="content"&gt;123&lt;/span&gt;&lt;span class="delimiter"&gt;&amp;quot;&lt;/span&gt;&lt;/span&gt;.number?  &lt;span class="comment"&gt;# =&amp;gt; true&lt;/span&gt;
+&lt;span class="keyword"&gt;end&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+&lt;/div&gt;
+
+&lt;p&gt;Так-же этот метод можно добавить в другой модуль:&lt;/p&gt;
+&lt;div class="CodeRay"&gt;
+  &lt;div class="code"&gt;&lt;pre&gt;&lt;span class="keyword"&gt;module&lt;/span&gt; &lt;span class="class"&gt;MyApp&lt;/span&gt;
+  using &lt;span class="constant"&gt;NumberQuery&lt;/span&gt;
+
+  p &lt;span class="string"&gt;&lt;span class="delimiter"&gt;&amp;quot;&lt;/span&gt;&lt;span class="content"&gt;123&lt;/span&gt;&lt;span class="delimiter"&gt;&amp;quot;&lt;/span&gt;&lt;/span&gt;.number?  &lt;span class="comment"&gt;# =&amp;gt; true&lt;/span&gt;
+  p &lt;span class="string"&gt;&lt;span class="delimiter"&gt;&amp;quot;&lt;/span&gt;&lt;span class="content"&gt;foo&lt;/span&gt;&lt;span class="delimiter"&gt;&amp;quot;&lt;/span&gt;&lt;/span&gt;.number?  &lt;span class="comment"&gt;# =&amp;gt; false&lt;/span&gt;
+&lt;span class="keyword"&gt;end&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+&lt;/div&gt;
+&lt;h3 id="keyword-arguments"&gt;Keyword arguments&lt;/h3&gt;
+&lt;p&gt;Новая фича простая, но очень удобная, это как новые хеши в 1.9, к которым я до сих пор не могу привыкнуть и использую старый вид :)&lt;/p&gt;
+&lt;div class="CodeRay"&gt;
+  &lt;div class="code"&gt;&lt;pre&gt;&lt;span class="keyword"&gt;def&lt;/span&gt; &lt;span class="function"&gt;wrap&lt;/span&gt;(string, before: &lt;span class="string"&gt;&lt;span class="delimiter"&gt;&amp;quot;&lt;/span&gt;&lt;span class="content"&gt;&amp;lt;&lt;/span&gt;&lt;span class="delimiter"&gt;&amp;quot;&lt;/span&gt;&lt;/span&gt;, after: &lt;span class="string"&gt;&lt;span class="delimiter"&gt;&amp;quot;&lt;/span&gt;&lt;span class="content"&gt;&amp;gt;&lt;/span&gt;&lt;span class="delimiter"&gt;&amp;quot;&lt;/span&gt;&lt;/span&gt;)
+  &lt;span class="string"&gt;&lt;span class="delimiter"&gt;&amp;quot;&lt;/span&gt;&lt;span class="inline"&gt;&lt;span class="inline-delimiter"&gt;#{&lt;/span&gt;before&lt;span class="inline-delimiter"&gt;}&lt;/span&gt;&lt;/span&gt;&lt;span class="inline"&gt;&lt;span class="inline-delimiter"&gt;#{&lt;/span&gt;string&lt;span class="inline-delimiter"&gt;}&lt;/span&gt;&lt;/span&gt;&lt;span class="inline"&gt;&lt;span class="inline-delimiter"&gt;#{&lt;/span&gt;after&lt;span class="inline-delimiter"&gt;}&lt;/span&gt;&lt;/span&gt;&lt;span class="delimiter"&gt;&amp;quot;&lt;/span&gt;&lt;/span&gt; &lt;span class="comment"&gt;# в теле как переменная,&lt;/span&gt;
+                               &lt;span class="comment"&gt;# в параметрах как хеш&lt;/span&gt;
+&lt;span class="keyword"&gt;end&lt;/span&gt;
+
+&lt;span class="comment"&gt;# опциональное использование&lt;/span&gt;
+p wrap(&lt;span class="string"&gt;&lt;span class="delimiter"&gt;&amp;quot;&lt;/span&gt;&lt;span class="content"&gt;foo&lt;/span&gt;&lt;span class="delimiter"&gt;&amp;quot;&lt;/span&gt;&lt;/span&gt;)                                  &lt;span class="comment"&gt;# =&amp;gt; &amp;quot;&amp;lt;foo&amp;gt;&amp;quot;&lt;/span&gt;
+&lt;span class="comment"&gt;# один или другой&lt;/span&gt;
+p wrap(&lt;span class="string"&gt;&lt;span class="delimiter"&gt;&amp;quot;&lt;/span&gt;&lt;span class="content"&gt;foo&lt;/span&gt;&lt;span class="delimiter"&gt;&amp;quot;&lt;/span&gt;&lt;/span&gt;, before: &lt;span class="string"&gt;&lt;span class="delimiter"&gt;&amp;quot;&lt;/span&gt;&lt;span class="content"&gt;#&amp;lt;&lt;/span&gt;&lt;span class="delimiter"&gt;&amp;quot;&lt;/span&gt;&lt;/span&gt;)                    &lt;span class="comment"&gt;# =&amp;gt; &amp;quot;#&amp;lt;foo&amp;gt;&amp;quot;&lt;/span&gt;
+p wrap(&lt;span class="string"&gt;&lt;span class="delimiter"&gt;&amp;quot;&lt;/span&gt;&lt;span class="content"&gt;foo&lt;/span&gt;&lt;span class="delimiter"&gt;&amp;quot;&lt;/span&gt;&lt;/span&gt;, after: &lt;span class="string"&gt;&lt;span class="delimiter"&gt;&amp;quot;&lt;/span&gt;&lt;span class="content"&gt;]&lt;/span&gt;&lt;span class="delimiter"&gt;&amp;quot;&lt;/span&gt;&lt;/span&gt;)                      &lt;span class="comment"&gt;# =&amp;gt; &amp;quot;&amp;lt;foo]&amp;quot;&lt;/span&gt;
+&lt;span class="comment"&gt;# порядок не важен&lt;/span&gt;
+p wrap(&lt;span class="string"&gt;&lt;span class="delimiter"&gt;&amp;quot;&lt;/span&gt;&lt;span class="content"&gt;foo&lt;/span&gt;&lt;span class="delimiter"&gt;&amp;quot;&lt;/span&gt;&lt;/span&gt;, after: &lt;span class="string"&gt;&lt;span class="delimiter"&gt;&amp;quot;&lt;/span&gt;&lt;span class="content"&gt;]&lt;/span&gt;&lt;span class="delimiter"&gt;&amp;quot;&lt;/span&gt;&lt;/span&gt;, before: &lt;span class="string"&gt;&lt;span class="delimiter"&gt;&amp;quot;&lt;/span&gt;&lt;span class="content"&gt;[&lt;/span&gt;&lt;span class="delimiter"&gt;&amp;quot;&lt;/span&gt;&lt;/span&gt;)         &lt;span class="comment"&gt;# =&amp;gt; &amp;quot;[foo]&amp;quot;&lt;/span&gt;
+
+&lt;span class="comment"&gt;# две звезды для захвата всех аргументов&lt;/span&gt;
+&lt;span class="comment"&gt;# или использование аргументов в виде хеша&lt;/span&gt;
+&lt;span class="keyword"&gt;def&lt;/span&gt; &lt;span class="function"&gt;capture&lt;/span&gt;(**opts)
+  opts
+&lt;span class="keyword"&gt;end&lt;/span&gt;
+p capture(foo: &lt;span class="string"&gt;&lt;span class="delimiter"&gt;&amp;quot;&lt;/span&gt;&lt;span class="content"&gt;bar&lt;/span&gt;&lt;span class="delimiter"&gt;&amp;quot;&lt;/span&gt;&lt;/span&gt;)                          &lt;span class="comment"&gt;# =&amp;gt; {:foo=&amp;gt;&amp;quot;bar&amp;quot;}&lt;/span&gt;
+
+&lt;span class="comment"&gt;# ключи можно использовать как символы&lt;/span&gt;
+opts = {&lt;span class="symbol"&gt;:before&lt;/span&gt; =&amp;gt; &lt;span class="string"&gt;&lt;span class="delimiter"&gt;&amp;quot;&lt;/span&gt;&lt;span class="content"&gt;(&lt;/span&gt;&lt;span class="delimiter"&gt;&amp;quot;&lt;/span&gt;&lt;/span&gt;, &lt;span class="symbol"&gt;:after&lt;/span&gt; =&amp;gt; &lt;span class="string"&gt;&lt;span class="delimiter"&gt;&amp;quot;&lt;/span&gt;&lt;span class="content"&gt;)&lt;/span&gt;&lt;span class="delimiter"&gt;&amp;quot;&lt;/span&gt;&lt;/span&gt;}
+p wrap(&lt;span class="string"&gt;&lt;span class="delimiter"&gt;&amp;quot;&lt;/span&gt;&lt;span class="content"&gt;foo&lt;/span&gt;&lt;span class="delimiter"&gt;&amp;quot;&lt;/span&gt;&lt;/span&gt;, **opts)                          &lt;span class="comment"&gt;# =&amp;gt; &amp;quot;(foo)&amp;quot;&lt;/span&gt;
+
+&lt;span class="comment"&gt;# можно использовать старый вид хешей&lt;/span&gt;
+p wrap(&lt;span class="string"&gt;&lt;span class="delimiter"&gt;&amp;quot;&lt;/span&gt;&lt;span class="content"&gt;foo&lt;/span&gt;&lt;span class="delimiter"&gt;&amp;quot;&lt;/span&gt;&lt;/span&gt;, &lt;span class="symbol"&gt;:before&lt;/span&gt; =&amp;gt; &lt;span class="string"&gt;&lt;span class="delimiter"&gt;&amp;quot;&lt;/span&gt;&lt;span class="content"&gt;{&lt;/span&gt;&lt;span class="delimiter"&gt;&amp;quot;&lt;/span&gt;&lt;/span&gt;, &lt;span class="symbol"&gt;:after&lt;/span&gt; =&amp;gt; &lt;span class="string"&gt;&lt;span class="delimiter"&gt;&amp;quot;&lt;/span&gt;&lt;span class="content"&gt;}&lt;/span&gt;&lt;span class="delimiter"&gt;&amp;quot;&lt;/span&gt;&lt;/span&gt;)   &lt;span class="comment"&gt;# =&amp;gt; &amp;quot;{foo}&amp;quot;&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+&lt;/div&gt;
+&lt;h3 id="module-prepend"&gt;Module#prepend&lt;/h3&gt;
+&lt;p&gt;Тоже очень полезное нововведение, комментарии и объяснения излишне.&lt;/p&gt;
+&lt;div class="CodeRay"&gt;
+  &lt;div class="code"&gt;&lt;pre&gt;&lt;span class="keyword"&gt;module&lt;/span&gt; &lt;span class="class"&gt;A&lt;/span&gt;
+  &lt;span class="keyword"&gt;def&lt;/span&gt; &lt;span class="function"&gt;foo&lt;/span&gt;
+    &lt;span class="string"&gt;&lt;span class="delimiter"&gt;&amp;quot;&lt;/span&gt;&lt;span class="content"&gt;A&lt;/span&gt;&lt;span class="delimiter"&gt;&amp;quot;&lt;/span&gt;&lt;/span&gt;
+  &lt;span class="keyword"&gt;end&lt;/span&gt;
+&lt;span class="keyword"&gt;end&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+&lt;/div&gt;
+&lt;div class="CodeRay"&gt;
+  &lt;div class="code"&gt;&lt;pre&gt;&lt;span class="keyword"&gt;class&lt;/span&gt; &lt;span class="class"&gt;B&lt;/span&gt;
+  include &lt;span class="constant"&gt;A&lt;/span&gt;
+
+  &lt;span class="keyword"&gt;def&lt;/span&gt; &lt;span class="function"&gt;foo&lt;/span&gt;
+    &lt;span class="string"&gt;&lt;span class="delimiter"&gt;&amp;quot;&lt;/span&gt;&lt;span class="content"&gt;B&lt;/span&gt;&lt;span class="delimiter"&gt;&amp;quot;&lt;/span&gt;&lt;/span&gt;
+  &lt;span class="keyword"&gt;end&lt;/span&gt;
+&lt;span class="keyword"&gt;end&lt;/span&gt;
+
+p &lt;span class="constant"&gt;B&lt;/span&gt;.new.foo   &lt;span class="comment"&gt;# =&amp;gt; &amp;quot;B&amp;quot;&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+&lt;/div&gt;
+&lt;div class="CodeRay"&gt;
+  &lt;div class="code"&gt;&lt;pre&gt;&lt;span class="keyword"&gt;class&lt;/span&gt; &lt;span class="class"&gt;C&lt;/span&gt;
+  prepend &lt;span class="constant"&gt;A&lt;/span&gt;
+
+  &lt;span class="keyword"&gt;def&lt;/span&gt; &lt;span class="function"&gt;foo&lt;/span&gt;
+    &lt;span class="string"&gt;&lt;span class="delimiter"&gt;&amp;quot;&lt;/span&gt;&lt;span class="content"&gt;B&lt;/span&gt;&lt;span class="delimiter"&gt;&amp;quot;&lt;/span&gt;&lt;/span&gt;
+  &lt;span class="keyword"&gt;end&lt;/span&gt;
+&lt;span class="keyword"&gt;end&lt;/span&gt;
+
+p &lt;span class="constant"&gt;C&lt;/span&gt;.new.foo   &lt;span class="comment"&gt;# =&amp;gt; &amp;quot;A&amp;quot;&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+&lt;/div&gt;
+&lt;h3 id="converting-convention-to-hash-to_h"&gt;Converting convention to Hash: #to_h&lt;/h3&gt;&lt;div class="CodeRay"&gt;
+  &lt;div class="code"&gt;&lt;pre&gt;&lt;span class="keyword"&gt;def&lt;/span&gt; &lt;span class="function"&gt;foo&lt;/span&gt;(opts)
+  raise &lt;span class="constant"&gt;ArgumentError&lt;/span&gt;, &lt;span class="string"&gt;&lt;span class="delimiter"&gt;&amp;quot;&lt;/span&gt;&lt;span class="content"&gt;opts must be a Hash&lt;/span&gt;&lt;span class="delimiter"&gt;&amp;quot;&lt;/span&gt;&lt;/span&gt; &lt;span class="keyword"&gt;unless&lt;/span&gt; opts.is_a?(&lt;span class="constant"&gt;Hash&lt;/span&gt;)
+  &lt;span class="comment"&gt;# do stuff with opts&lt;/span&gt;
+&lt;span class="keyword"&gt;end&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+&lt;/div&gt;
+
+&lt;p&gt;Теперь можно добавить универсальности:&lt;/p&gt;
+&lt;div class="CodeRay"&gt;
+  &lt;div class="code"&gt;&lt;pre&gt;&lt;span class="keyword"&gt;def&lt;/span&gt; &lt;span class="function"&gt;foo&lt;/span&gt;(options)
+  &lt;span class="keyword"&gt;if&lt;/span&gt; options.respond_to?(&lt;span class="symbol"&gt;:to_h&lt;/span&gt;)
+    opts = options.to_h
+  &lt;span class="keyword"&gt;else&lt;/span&gt;
+    raise &lt;span class="constant"&gt;TypeError&lt;/span&gt;, &lt;span class="string"&gt;&lt;span class="delimiter"&gt;&amp;quot;&lt;/span&gt;&lt;span class="content"&gt;can't convert &lt;/span&gt;&lt;span class="inline"&gt;&lt;span class="inline-delimiter"&gt;#{&lt;/span&gt;options.inspect&lt;span class="inline-delimiter"&gt;}&lt;/span&gt;&lt;/span&gt;&lt;span class="content"&gt; into Hash&lt;/span&gt;&lt;span class="delimiter"&gt;&amp;quot;&lt;/span&gt;&lt;/span&gt;
+  &lt;span class="keyword"&gt;end&lt;/span&gt;
+  &lt;span class="comment"&gt;# do stuff with opts&lt;/span&gt;
+&lt;span class="keyword"&gt;end&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+&lt;/div&gt;
+&lt;h3 id="i-a-literal-for-symbol-array"&gt;%i: a literal for symbol array&lt;/h3&gt;&lt;div class="CodeRay"&gt;
+  &lt;div class="code"&gt;&lt;pre&gt;p %i{hurray huzzah whoop}   &lt;span class="comment"&gt;# =&amp;gt; [:hurray, :huzzah, :whoop]&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+&lt;/div&gt;
+&lt;h2 id="ustanovka-i-testirovanie-novoy-versii-ruby-2-0-0-preview1"&gt;Установка и тестирование новой версии (ruby-2.0.0-preview1)&lt;/h2&gt;
+&lt;p&gt;Железо:&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;OS: OSX 10.8.2&lt;/li&gt;
+&lt;li&gt;CPU: 2.2GHz i7&lt;/li&gt;
+&lt;li&gt;RAM: 8Gb 1333 MHz DDR3&lt;/li&gt;
+&lt;li&gt;HHD: Seagate Momentus XT, 2.5”, SATA 3Gb/s, 7200 rpm, hybrid&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;&lt;a href="https://github.com/acangiano/ruby-benchmark-suite"&gt;Набор тестов&lt;/a&gt;.&lt;/p&gt;
+
+&lt;p&gt;Установка:&lt;/p&gt;
+&lt;div class="CodeRay"&gt;
+  &lt;div class="code"&gt;&lt;pre&gt;$ export CC=clang # http://bugs.ruby-lang.org/issues/7264
+$ rvm install ruby-2.0.0-preview1
+&lt;/pre&gt;&lt;/div&gt;
+&lt;/div&gt;
+
+&lt;p&gt;Результаты тестирования:&lt;/p&gt;
+
+&lt;p&gt;&lt;img alt="Total seconds" src="blog/2012/Ruby-2-0/total_seconds.png?1353842872" /&gt;
+&lt;img alt="Mean seconds" src="blog/2012/Ruby-2-0/mean_seconds.png?1353842872" /&gt;&lt;/p&gt;
+</content>
+  </entry>
   <entry>
     <title>Тестируем RAM, SSD и HDD на скорость</title>
     <link rel="alternate" href="/blog/2012/Ram-ssd-hdd.html"/>
@@ -18,23 +206,24 @@
     <author>
       <name>Article Author</name>
     </author>
-    <summary type="html">&lt;p&gt;Сейчас я потихньку занимаюсь своим проектом, когда есть свободное время, и вот недавно выпал вопрос о железе для хостинга. Облака я рассматривать пока не буду, т.к. железки там сказать в принципе не смогут, только если везде стоят одни и те-же. Кстати, скоро ко мне попадет в руки тестовый аккаунт на новой облачной площадке, там и потестирую что и как быстро работает. А сейчас я хочу рассказать о производительности SSD vs &lt;a href='http://ru.wikipedia.org/wiki/RAM_drive'&gt;RAM Drive&lt;/a&gt; vs HDD.&lt;/p&gt;</summary>
-    <content type="html">&lt;p&gt;Сейчас я потихньку занимаюсь своим проектом, когда есть свободное время, и вот недавно выпал вопрос о железе для хостинга. Облака я рассматривать пока не буду, т.к. железки там сказать в принципе не смогут, только если везде стоят одни и те-же. Кстати, скоро ко мне попадет в руки тестовый аккаунт на новой облачной площадке, там и потестирую что и как быстро работает. А сейчас я хочу рассказать о производительности SSD vs &lt;a href='http://ru.wikipedia.org/wiki/RAM_drive'&gt;RAM Drive&lt;/a&gt; vs HDD.&lt;/p&gt;
+    <summary type="html">&lt;p&gt;Сейчас я потихньку занимаюсь своим проектом, когда есть свободное время, и вот недавно выпал вопрос о железе для хостинга. Облака я рассматривать пока не буду, т.к. железки там сказать в принципе не смогут, только если везде стоят одни и те-же. Кстати, скоро ко мне попадет в руки тестовый аккаунт на новой облачной площадке, там и потестирую что и как быстро работает. А сейчас я хочу рассказать о производительности SSD vs &lt;a href="http://ru.wikipedia.org/wiki/RAM_drive"&gt;RAM Drive&lt;/a&gt; vs HDD.&lt;/p&gt;
+</summary>
+    <content type="html">&lt;p&gt;Сейчас я потихньку занимаюсь своим проектом, когда есть свободное время, и вот недавно выпал вопрос о железе для хостинга. Облака я рассматривать пока не буду, т.к. железки там сказать в принципе не смогут, только если везде стоят одни и те-же. Кстати, скоро ко мне попадет в руки тестовый аккаунт на новой облачной площадке, там и потестирую что и как быстро работает. А сейчас я хочу рассказать о производительности SSD vs &lt;a href="http://ru.wikipedia.org/wiki/RAM_drive"&gt;RAM Drive&lt;/a&gt; vs HDD.&lt;/p&gt;
 
 &lt;p&gt;Тесты проводились на компьютере с OS X, 4x4Gb Kingston @ 1333 RAM, Intel Core i3 @ 2.8 Ghz, OCZ Vertex3 @ 120Gb, HDD Seagate ST3000DM001 @ 3Tb. OS X, конечно же, установлена на SSD, Ruby с гемами расположены в домашней папке. Я создал Rails приложение, создал 10.000 записей в sqlite и контроллер со следующим кодом:&lt;/p&gt;
-
-&lt;pre&gt;&lt;code&gt;@products = Product.all
-Rails.cache.clear&lt;/code&gt;&lt;/pre&gt;
+&lt;div class="CodeRay"&gt;
+  &lt;div class="code"&gt;&lt;pre&gt;@products = Product.all
+Rails.cache.clear
+&lt;/pre&gt;&lt;/div&gt;
+&lt;/div&gt;
 
 &lt;p&gt;Кстати, записи на странице не рендерил, подумал что это будет лишним.&lt;/p&gt;
 
 &lt;p&gt;Дальше связка nginx + unicorn и тестирование нагрузки. Сначала хотел использовать siege, но что-то там не срослось, давно уже было, не помню :) И таки взял ab.&lt;/p&gt;
 
 &lt;p&gt;Результаты получились очень странными:&lt;/p&gt;
-
-&lt;h2 id='hdd'&gt;HDD&lt;/h2&gt;
-
-&lt;pre&gt;&lt;code&gt;Document Length:      719 bytes
+&lt;h2 id="hdd"&gt;HDD&lt;/h2&gt;&lt;div class="CodeRay"&gt;
+  &lt;div class="code"&gt;&lt;pre&gt;Document Length:      719 bytes
 Concurrency Level:    4
 Time taken for tests: 40.510 seconds
 Complete requests:    100
@@ -47,11 +236,11 @@ Transfer rate:        3223.92 kb/s received
             min     avg     max
 Connect:    0       0       0
 Processing: 1193    1596    2400
-Total:      1193    1596    2400&lt;/code&gt;&lt;/pre&gt;
-
-&lt;h2 id='ram_disk'&gt;RAM disk&lt;/h2&gt;
-
-&lt;pre&gt;&lt;code&gt;Document Length:      719 bytes
+Total:      1193    1596    2400
+&lt;/pre&gt;&lt;/div&gt;
+&lt;/div&gt;
+&lt;h2 id="ram-disk"&gt;RAM disk&lt;/h2&gt;&lt;div class="CodeRay"&gt;
+  &lt;div class="code"&gt;&lt;pre&gt;Document Length:      719 bytes
 Concurrency Level:    4
 Time taken for tests: 39.272 seconds
 Complete requests:    100
@@ -64,11 +253,11 @@ Transfer rate:        3325.51 kb/s received
             min     avg     max
 Connect:    0       0       0
 Processing: 366     1546    1645
-Total:      366     1546    1645&lt;/code&gt;&lt;/pre&gt;
-
-&lt;h2 id='ssd'&gt;SSD&lt;/h2&gt;
-
-&lt;pre&gt;&lt;code&gt;Document Length:      719 bytes
+Total:      366     1546    1645
+&lt;/pre&gt;&lt;/div&gt;
+&lt;/div&gt;
+&lt;h2 id="ssd"&gt;SSD&lt;/h2&gt;&lt;div class="CodeRay"&gt;
+  &lt;div class="code"&gt;&lt;pre&gt;Document Length:      719 bytes
 Concurrency Level:    4
 Time taken for tests: 39.274 seconds
 Complete requests:    100
@@ -81,19 +270,24 @@ Transfer rate:        3325.35 kb/s received
             min     avg     max
 Connect:    0       0       0
 Processing: 398     1546    1627
-Total:      398     1546    1627&lt;/code&gt;&lt;/pre&gt;
+Total:      398     1546    1627
+&lt;/pre&gt;&lt;/div&gt;
+&lt;/div&gt;
 
 &lt;p&gt;И для удобства:&lt;/p&gt;
-
-&lt;pre&gt;&lt;code&gt;            Connnection Times (ms)  RPS
+&lt;div class="CodeRay"&gt;
+  &lt;div class="code"&gt;&lt;pre&gt;            Connnection Times (ms)  RPS
             min     avg     max
 HDD:        1193    1596    2400    2468.54
 RAM Disk:   366     1546    1645    2546.33
-SSD: 398    398     1546    1627    2546.21&lt;/code&gt;&lt;/pre&gt;
+SSD: 398    398     1546    1627    2546.21
+&lt;/pre&gt;&lt;/div&gt;
+&lt;/div&gt;
 
 &lt;p&gt;В следующий раз буду проводить тест SSD vs RAM disk уже на серверной машине, и Ruby с гемами положу в оперативную память, когда буду ее тестировать, а то сейчас, как мне кажется, у RAM не сильный выигрышь просто потому что сам руби был на SSD.&lt;/p&gt;
 
-&lt;p&gt;Ну и в следующий раз постараюсь с графиками, а то голые цифры мне совсем не нравятся.&lt;/p&gt;</content>
+&lt;p&gt;Ну и в следующий раз постараюсь с графиками, а то голые цифры мне совсем не нравятся.&lt;/p&gt;
+</content>
   </entry>
   <entry>
     <title>Обновление бложика</title>
@@ -104,12 +298,14 @@ SSD: 398    398     1546    1627    2546.21&lt;/code&gt;&lt;/pre&gt;
     <author>
       <name>Article Author</name>
     </author>
-    <summary type="html">&lt;p&gt;Всем привет, это будет еще один бесполезный пост о разработке простейшего блога. Middleman не перестает меня радовать, я таки понял где зарылась проблема с тегами, надо было просто указать для них путь в конфигурации, странно что оно не влючено «по дефолту», ну да ладно.&lt;/p&gt;</summary>
+    <summary type="html">&lt;p&gt;Всем привет, это будет еще один бесполезный пост о разработке простейшего блога. Middleman не перестает меня радовать, я таки понял где зарылась проблема с тегами, надо было просто указать для них путь в конфигурации, странно что оно не влючено «по дефолту», ну да ладно.&lt;/p&gt;
+</summary>
     <content type="html">&lt;p&gt;Всем привет, это будет еще один бесполезный пост о разработке простейшего блога. Middleman не перестает меня радовать, я таки понял где зарылась проблема с тегами, надо было просто указать для них путь в конфигурации, странно что оно не влючено «по дефолту», ну да ладно.&lt;/p&gt;
 
-&lt;p&gt;Обновил свой бложик, добавил теги, страницы «&lt;a href='/projects.html'&gt;Проекты&lt;/a&gt;», «&lt;a href='/contacts.html'&gt;Контакты&lt;/a&gt;», «&lt;a href='/about_me.html'&gt;Кто такой?&lt;/a&gt;», правда страницу с проектами надо бы доделать. Добавил &lt;a href='/feed.xml'&gt;rss фид&lt;/a&gt; &amp;#8212; подписывайтесь, если вообще читаете это.&lt;/p&gt;
+&lt;p&gt;Обновил свой бложик, добавил теги, страницы «&lt;a href="/projects.html"&gt;Проекты&lt;/a&gt;», «&lt;a href="/contacts.html"&gt;Контакты&lt;/a&gt;», «&lt;a href="/about_me.html"&gt;Кто такой?&lt;/a&gt;», правда страницу с проектами надо бы доделать. Добавил &lt;a href="/feed.xml"&gt;rss фид&lt;/a&gt; &amp;mdash; подписывайтесь, если вообще читаете это.&lt;/p&gt;
 
-&lt;p&gt;Следующий пост обещает быть намного интереснее, там расскажу о недавнем тесте SSD vs RAM vs HDD, где я тестировал Rails приложение на разных дисках, кстати, RAM &amp;#8212; там я просто смонтировал раздел в оперативной памяти и поместил туда приложеньку.&lt;/p&gt;</content>
+&lt;p&gt;Следующий пост обещает быть намного интереснее, там расскажу о недавнем тесте SSD vs RAM vs HDD, где я тестировал Rails приложение на разных дисках, кстати, RAM &amp;mdash; там я просто смонтировал раздел в оперативной памяти и поместил туда приложеньку.&lt;/p&gt;
+</content>
   </entry>
   <entry>
     <title>Первый пост в моем html блоге</title>
@@ -120,13 +316,15 @@ SSD: 398    398     1546    1627    2546.21&lt;/code&gt;&lt;/pre&gt;
     <author>
       <name>Article Author</name>
     </author>
-    <summary type="html">&lt;p&gt;Сколько раз я пытался начать вести свой собственный блог, сколько раз бросал это дело по причине того, что писать было нечего. В последнее время я провожу много тестов, не те, которые unit, а тесты производительности. Пробую разные штуки, оптимизирую и прочее.&lt;/p&gt;</summary>
+    <summary type="html">&lt;p&gt;Сколько раз я пытался начать вести свой собственный блог, сколько раз бросал это дело по причине того, что писать было нечего. В последнее время я провожу много тестов, не те, которые unit, а тесты производительности. Пробую разные штуки, оптимизирую и прочее.&lt;/p&gt;
+</summary>
     <content type="html">&lt;p&gt;Сколько раз я пытался начать вести свой собственный блог, сколько раз бросал это дело по причине того, что писать было нечего. В последнее время я провожу много тестов, не те, которые unit, а тесты производительности. Пробую разные штуки, оптимизирую и прочее.&lt;/p&gt;
 
-&lt;p&gt;Сначала я хочу рассказать о внутренностях моего бложика. Большинство авторов используют сторонние сервисы или устанавливают wordpress/drupal/another_cms. Сервисы типа tumblr хороши, но мне не хватило их функционала, там все слишком просто. Ставить wordpress тоже не хотел из-за «сильной любви» к php. И тогда я решил воспользоваться решениями, которые сейчас набирают обороты: хостинг &amp;#8212; github, редактор &amp;#8212; sublime и без движка, есть только сорцы (ruby, slim, sass, coffee), которые компилируются в набор статических страниц и заливаются на github. В итоге мы имеем удобный инструмент и бесплатный хостинг =)&lt;/p&gt;
+&lt;p&gt;Сначала я хочу рассказать о внутренностях моего бложика. Большинство авторов используют сторонние сервисы или устанавливают wordpress/drupal/another_cms. Сервисы типа tumblr хороши, но мне не хватило их функционала, там все слишком просто. Ставить wordpress тоже не хотел из-за «сильной любви» к php. И тогда я решил воспользоваться решениями, которые сейчас набирают обороты: хостинг &amp;mdash; github, редактор &amp;mdash; sublime и без движка, есть только сорцы (ruby, slim, sass, coffee), которые компилируются в набор статических страниц и заливаются на github. В итоге мы имеем удобный инструмент и бесплатный хостинг =)&lt;/p&gt;
 
-&lt;p&gt;Для структурирования исходников бложика использовал готове решение &amp;#8212; &lt;a href='http://middlemanapp.com/'&gt;Middleman&lt;/a&gt;, с парочкой аддонов. Кстати, очень удобная штука, все очень легко разрабатывается, все с умом, правда есть пара моментов, например сейчас я не могу понять почему у меня не работают теги, ну это не страшно, т.к. у меня всего одна запись.&lt;/p&gt;
+&lt;p&gt;Для структурирования исходников бложика использовал готове решение &amp;mdash; &lt;a href="http://middlemanapp.com/"&gt;Middleman&lt;/a&gt;, с парочкой аддонов. Кстати, очень удобная штука, все очень легко разрабатывается, все с умом, правда есть пара моментов, например сейчас я не могу понять почему у меня не работают теги, ну это не страшно, т.к. у меня всего одна запись.&lt;/p&gt;
 
-&lt;p&gt;На этом первый пост неожиданно кончается, т.к. я уверен что мой блог никто не будет читать, ну а если кто-то прочитал этот бесполезнейший бред - пишите в комменты, они мотивируют.&lt;/p&gt;</content>
+&lt;p&gt;На этом первый пост неожиданно кончается, т.к. я уверен что мой блог никто не будет читать, ну а если кто-то прочитал этот бесполезнейший бред - пишите в комменты, они мотивируют.&lt;/p&gt;
+</content>
   </entry>
 </feed>
