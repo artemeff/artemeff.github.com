@@ -282,13 +282,81 @@ Total:      398     1546    1627
             min     avg     max
 HDD:        1193    1596    2400    2468.54
 RAM Disk:   366     1546    1645    2546.33
-SSD: 398    398     1546    1627    2546.21
+SSD:        398     1546    1627    2546.21
 &lt;/pre&gt;&lt;/div&gt;
 &lt;/div&gt;
 
 &lt;p&gt;В следующий раз буду проводить тест SSD vs RAM disk уже на серверной машине, и Ruby с гемами положу в оперативную память, когда буду ее тестировать, а то сейчас, как мне кажется, у RAM не сильный выигрышь просто потому что сам руби был на SSD.&lt;/p&gt;
 
 &lt;p&gt;Ну и в следующий раз постараюсь с графиками, а то голые цифры мне совсем не нравятся.&lt;/p&gt;
+&lt;h3 id="upd"&gt;UPD&lt;/h3&gt;
+&lt;p&gt;В комментариях посоветовали провести тесты на запись, результаты получились адекватнее.&lt;/p&gt;
+&lt;h2 id="hdd"&gt;HDD&lt;/h2&gt;&lt;div class="CodeRay"&gt;
+  &lt;div class="code"&gt;&lt;pre&gt;Document Length:      975 bytes
+Concurrency Level:    4
+Time taken for tests: 83.542 seconds
+Complete requests:    100
+Failed requests:      0
+Non-2xx responses:    100
+Total transferred:    124700 bytes
+HTML transferred:     97500 bytes
+Requests per second:  1197.00
+Transfer rate:        1492.65 kb/s received
+            Connnection Times (ms)
+            min     avg     max
+Connect:    0       0       0
+Processing: 540     3290    4829
+Total:      540     3290    4829
+&lt;/pre&gt;&lt;/div&gt;
+&lt;/div&gt;
+&lt;h2 id="ram-disk"&gt;RAM disk&lt;/h2&gt;&lt;div class="CodeRay"&gt;
+  &lt;div class="code"&gt;&lt;pre&gt;Document Length:      972 bytes
+Concurrency Level:    4
+Time taken for tests: 13.850 seconds
+Complete requests:    100
+Failed requests:      0
+Non-2xx responses:    100
+Total transferred:    124400 bytes
+HTML transferred:     97200 bytes
+Requests per second:  7220.03
+Transfer rate:        8981.72 kb/s received
+            Connnection Times (ms)
+            min     avg     max
+Connect:    0       0       0
+Processing: 130     545     577
+Total:      130     545     577
+&lt;/pre&gt;&lt;/div&gt;
+&lt;/div&gt;
+&lt;h2 id="ssd"&gt;SSD&lt;/h2&gt;&lt;div class="CodeRay"&gt;
+  &lt;div class="code"&gt;&lt;pre&gt;Document Length:      974 bytes
+Concurrency Level:    4
+Time taken for tests: 15.569 seconds
+Complete requests:    100
+Failed requests:      0
+Non-2xx responses:    100
+Total transferred:    124600 bytes
+HTML transferred:     97400 bytes
+Requests per second:  6422.87
+Transfer rate:        8002.89 kb/s received
+            Connnection Times (ms)
+            min     avg     max
+Connect:    0       0       0
+Processing: 183     613     664
+Total:      183     613     664
+&lt;/pre&gt;&lt;/div&gt;
+&lt;/div&gt;
+
+&lt;p&gt;И для удобства:&lt;/p&gt;
+&lt;div class="CodeRay"&gt;
+  &lt;div class="code"&gt;&lt;pre&gt;            Connnection Times (ms)  RPS
+            min     avg     max
+HDD:        540     3290    4829    1197.00
+RAM Disk:   130     545     577     7220.03
+SSD:        183     613     664     8002.89
+&lt;/pre&gt;&lt;/div&gt;
+&lt;/div&gt;
+
+&lt;p&gt;&lt;img alt="Результаты" src="blog/2012/Ram-ssd-hdd/chart.png?1353912874" /&gt;&lt;/p&gt;
 </content>
   </entry>
   <entry>
