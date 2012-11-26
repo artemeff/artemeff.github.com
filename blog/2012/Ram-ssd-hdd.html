@@ -56,8 +56,8 @@
 
 <p>Тесты проводились на компьютере с OS X, 4x4Gb Kingston @ 1333 RAM, Intel Core i3 @ 2.8 Ghz, OCZ Vertex3 @ 120Gb, HDD Seagate ST3000DM001 @ 3Tb. OS X, конечно же, установлена на SSD, Ruby с гемами расположены в домашней папке. Я создал Rails приложение, создал 10.000 записей в sqlite и контроллер со следующим кодом:</p>
 <div class="CodeRay">
-  <div class="code"><pre>@products = Product.all
-Rails.cache.clear
+  <div class="code"><pre><span class="instance-variable">@products</span> = <span class="constant">Product</span>.all
+<span class="constant">Rails</span>.cache.clear
 </pre></div>
 </div>
 
@@ -133,6 +133,19 @@ SSD:        398     1546    1627    2546.21
 <p>Ну и в следующий раз постараюсь с графиками, а то голые цифры мне совсем не нравятся.</p>
 <h3 id="upd">UPD</h3>
 <p>В комментариях посоветовали провести тесты на запись, результаты получились адекватнее.</p>
+
+<p>Код тестирования записи:</p>
+<div class="CodeRay">
+  <div class="code"><pre><span class="integer">1</span>.upto(<span class="integer">100</span>) <span class="keyword">do</span> |i|
+  <span class="constant">Product</span>.create <span class="keyword">do</span> |p|
+    p.code = rand <span class="integer">10_000</span>
+    p.name = <span class="string"><span class="delimiter">&quot;</span><span class="content">name</span><span class="delimiter">&quot;</span></span>
+    p.shown = [<span class="predefined-constant">true</span>, <span class="predefined-constant">false</span>].sample
+    p.description = <span class="string"><span class="delimiter">&quot;</span><span class="content">text</span><span class="delimiter">&quot;</span></span>
+  <span class="keyword">end</span>
+<span class="keyword">end</span>
+</pre></div>
+</div>
 <h2 id="hdd">HDD</h2><div class="CodeRay">
   <div class="code"><pre>Document Length:      975 bytes
 Concurrency Level:    4
