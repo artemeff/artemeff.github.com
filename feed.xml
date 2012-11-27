@@ -18,9 +18,9 @@
     <author>
       <name>Article Author</name>
     </author>
-    <summary type="html">&lt;p&gt;Совсем недавно прочел &lt;a href="http://habrahabr.ru/post/160371/"&gt;статью с хабра&lt;/a&gt;, где говорят что rvm замедляет скорость ruby интерпретатора. Я решил все это дело проверить на своем dev-компьютере и на облаке, которое мне дали &lt;a href="http://infobox.ru/cloud/servers/"&gt;Infobox&lt;/a&gt; для тестирования.&lt;/p&gt;
+    <summary type="html">&lt;p&gt;Совсем недавно прочел &lt;a href="http://habrahabr.ru/post/160371/"&gt;статью с хабра&lt;/a&gt;, где говорят что опции компиляции ruby в rvm замедляет интерпретатора. Я решил все это дело проверить на своем dev-компьютере и на облаке, которое мне дали &lt;a href="http://infobox.ru/cloud/servers/"&gt;Infobox&lt;/a&gt; для тестирования.&lt;/p&gt;
 </summary>
-    <content type="html">&lt;p&gt;Совсем недавно прочел &lt;a href="http://habrahabr.ru/post/160371/"&gt;статью с хабра&lt;/a&gt;, где говорят что rvm замедляет скорость ruby интерпретатора. Я решил все это дело проверить на своем dev-компьютере и на облаке, которое мне дали &lt;a href="http://infobox.ru/cloud/servers/"&gt;Infobox&lt;/a&gt; для тестирования.&lt;/p&gt;
+    <content type="html">&lt;p&gt;Совсем недавно прочел &lt;a href="http://habrahabr.ru/post/160371/"&gt;статью с хабра&lt;/a&gt;, где говорят что опции компиляции ruby в rvm замедляет интерпретатора. Я решил все это дело проверить на своем dev-компьютере и на облаке, которое мне дали &lt;a href="http://infobox.ru/cloud/servers/"&gt;Infobox&lt;/a&gt; для тестирования.&lt;/p&gt;
 
 &lt;p&gt;На облако мне выделили:&lt;/p&gt;
 
