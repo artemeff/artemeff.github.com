@@ -5,10 +5,69 @@
   <id>http://blog.url.com/</id>
   <link href="http://blog.url.com/"/>
   <link href="http://blog.url.com/feed.xml" rel="self"/>
-  <updated>2012-11-24T20:00:00Z</updated>
+  <updated>2012-11-26T20:00:00Z</updated>
   <author>
     <name>Blog Author</name>
   </author>
+  <entry>
+    <title>Ruby, cloud vs dedicated и проблемы rvm</title>
+    <link rel="alternate" href="/blog/2012/Ruby-performance.html"/>
+    <id>/blog/2012/Ruby-performance.html</id>
+    <published>2012-11-26T20:00:00Z</published>
+    <updated>2012-11-26T20:00:00Z</updated>
+    <author>
+      <name>Article Author</name>
+    </author>
+    <summary type="html">&lt;p&gt;Совсем недавно прочел &lt;a href="http://habrahabr.ru/post/160371/"&gt;статью с хабра&lt;/a&gt;, где говорят что rvm замедляет скорость ruby интерпретатора. Я решил все это дело проверить на своем dev-компьютере и на облаке, которое мне дали &lt;a href="http://infobox.ru/cloud/servers/"&gt;Infobox&lt;/a&gt; для тестирования.&lt;/p&gt;
+</summary>
+    <content type="html">&lt;p&gt;Совсем недавно прочел &lt;a href="http://habrahabr.ru/post/160371/"&gt;статью с хабра&lt;/a&gt;, где говорят что rvm замедляет скорость ruby интерпретатора. Я решил все это дело проверить на своем dev-компьютере и на облаке, которое мне дали &lt;a href="http://infobox.ru/cloud/servers/"&gt;Infobox&lt;/a&gt; для тестирования.&lt;/p&gt;
+
+&lt;p&gt;На облако мне выделили:&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;Debian 6.0&lt;/li&gt;
+&lt;li&gt;Intel Xeon E5-2630 @ 2.30GHz с 2 ядрами&lt;/li&gt;
+&lt;li&gt;4Gb RAM&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;О диске инфу получить не удалось, мне либо не хватает опыта и знаний в linux, либо это особенность всех облачных решений. Сам имею:&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;OS X 10.8.2&lt;/li&gt;
+&lt;li&gt;Intel Core i3 @ 2.8 Ghz с 4 ядрами&lt;/li&gt;
+&lt;li&gt;4x4Gb Kingston @ 1333 RAM&lt;/li&gt;
+&lt;li&gt;OCZ Vertex3 @ 120Gb&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h3 id="test-iz-stati"&gt;Тест из статьи&lt;/h3&gt;
+&lt;p&gt;Облако:&lt;/p&gt;
+&lt;div class="CodeRay"&gt;
+  &lt;div class="code"&gt;&lt;pre&gt;# time ruby -e &amp;quot;count = 0; while(count &amp;lt; 100000000); count = count + 1; end; puts count&amp;quot;
+100000000
+
+real  0m4.715s
+user  0m4.704s
+sys   0m0.012s
+&lt;/pre&gt;&lt;/div&gt;
+&lt;/div&gt;
+
+&lt;p&gt;Моя машина (&lt;strong&gt;без патча falcon&lt;/strong&gt;, опять проблем схватил при попытке установки с этим патчем):&lt;/p&gt;
+&lt;div class="CodeRay"&gt;
+  &lt;div class="code"&gt;&lt;pre&gt;$ time ruby -e &amp;quot;count = 0; while(count &amp;lt; 100000000); count = count + 1; end; puts count&amp;quot;
+100000000
+
+real  0m2.254s
+user  0m2.250s
+sys   0m0.003s
+&lt;/pre&gt;&lt;/div&gt;
+&lt;/div&gt;
+
+&lt;p&gt;Выводы простые &amp;mdash; если нужны все возможности облака, быстрое и легкое масштабирование и прочие прелести &amp;mdash; используем облако, если нужна хорошая производительность &amp;mdash; берем &lt;a href="http://ru.hetzner.com/hosting/produkte_rootserver/ex8s/"&gt;сервер в Hetzner с SSD диском&lt;/a&gt; (недавно появились) и наслаждаемся скоростью. &lt;/p&gt;
+
+&lt;p&gt;Кстати, интересно чем обычный HDD отличается от Enterprise?&lt;/p&gt;
+
+&lt;p&gt;Облако будет в моем распоряжении до 1 января, до тех пор можете заказывать у меня тесты, будем проводить :)&lt;/p&gt;
+</content>
+  </entry>
   <entry>
     <title>Ruby 2.0, что нас ждет?</title>
     <link rel="alternate" href="/blog/2012/Ruby-2-0.html"/>
@@ -195,8 +254,8 @@ $ rvm install ruby-2.0.0-preview1
 
 &lt;p&gt;Результаты тестирования:&lt;/p&gt;
 
-&lt;p&gt;&lt;img alt="Total seconds" src="blog/2012/Ruby-2-0/total_seconds.png?1353842872" /&gt;
-&lt;img alt="Mean seconds" src="blog/2012/Ruby-2-0/mean_seconds.png?1353842872" /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img alt="Total seconds" src="../blog/2012/Ruby-2-0/total_seconds.png?1353842872" /&gt;
+&lt;img alt="Mean seconds" src="../blog/2012/Ruby-2-0/mean_seconds.png?1353842872" /&gt;&lt;/p&gt;
 </content>
   </entry>
   <entry>
@@ -369,7 +428,7 @@ SSD:        183     613     664     6422.87
 &lt;/pre&gt;&lt;/div&gt;
 &lt;/div&gt;
 
-&lt;p&gt;&lt;img alt="Результаты" src="blog/2012/Ram-ssd-hdd/chart.png?1353912874" /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img alt="Результаты" src="../blog/2012/Ram-ssd-hdd/chart.png?1353912874" /&gt;&lt;/p&gt;
 </content>
   </entry>
   <entry>
