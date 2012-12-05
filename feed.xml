@@ -254,8 +254,8 @@ $ rvm install ruby-2.0.0-preview1
 
 &lt;p&gt;Результаты тестирования:&lt;/p&gt;
 
-&lt;p&gt;&lt;img alt="Total seconds" src="../blog/2012/Ruby-2-0/total_seconds.png?1353842872" /&gt;
-&lt;img alt="Mean seconds" src="../blog/2012/Ruby-2-0/mean_seconds.png?1353842872" /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img alt="Total seconds" src="../blog/2012/Ruby-2-0/total_seconds.png?1354701016" /&gt;
+&lt;img alt="Mean seconds" src="../blog/2012/Ruby-2-0/mean_seconds.png?1354701016" /&gt;&lt;/p&gt;
 </content>
   </entry>
   <entry>
@@ -428,7 +428,7 @@ SSD:        183     613     664     6422.87
 &lt;/pre&gt;&lt;/div&gt;
 &lt;/div&gt;
 
-&lt;p&gt;&lt;img alt="Результаты" src="../blog/2012/Ram-ssd-hdd/chart.png?1353912874" /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img alt="Результаты" src="../blog/2012/Ram-ssd-hdd/chart.png?1354701016" /&gt;&lt;/p&gt;
 </content>
   </entry>
   <entry>
