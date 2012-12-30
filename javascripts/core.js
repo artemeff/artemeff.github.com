@@ -1,1 +1,1 @@
-(function(){$(function(){return $(".archive_year").click(function(e){var t;return e.preventDefault(),t=$(this).attr("data-year"),$(".archive_year").removeClass("active"),$(this).addClass("active"),$(".archive_for:visible").fadeOut("fast","linear",function(){return $("#archive_for_"+t).fadeIn("fast")})})})}).call(this);
+(function(){$(function(){return $(".anch a").click(function(e){var t,n,r;return e.preventDefault(),t=$(this),r=t.attr("data-to"),r!=="#container"?n=$(r).position():n={top:0},$("html").animate({scrollTop:n.top-10},"slow")}),!1})}).call(this);
