@@ -7,8 +7,8 @@
     <link href="http://feeds.feedburner.com/yuri-artemev" rel="alternate" title="artemeff - Ruby on Rails developer" type="application/rss+xml">
     <title>Ruby 2.0, что нас ждет?</title>
     <meta content="2 ноября вышла первая версия Ruby 2.0. По плану, 24 февряля 2013 года выйдет 2.0.0-p0, что значит — релиз, но пока не для продакшна." name="description">
-    <meta content="ruby, rvm, test, performance" name="keywords"><link href="../../favicon.png?1356835712" rel="icon" type="image/png" /><link href="../../stylesheets/main.css?1356835712" media="screen" rel="stylesheet" type="text/css" /><script src="http://ajax.googleapis.com/ajax/libs/jquery/1/jquery.min.js" type="text/javascript"></script>
-    <script src="../../javascripts/core.js?1356835712" type="text/javascript"></script><!--html5 enabler-->
+    <meta content="ruby, rvm, test, performance" name="keywords"><link href="../../favicon.png?1356938145" rel="icon" type="image/png" /><link href="../../stylesheets/main.css?1356938145" media="screen" rel="stylesheet" type="text/css" /><script src="http://ajax.googleapis.com/ajax/libs/jquery/1/jquery.min.js" type="text/javascript"></script>
+    <script src="../../javascripts/core.js?1356938145" type="text/javascript"></script><!--html5 enabler-->
     <script type="text/javascript">;("header footer section aside nav article figure figcaption hgroup time").replace(/\w+/g,function(a){document.createElement(a)})</script>
     <!--Segment.io-->
     <script type="text/javascript">var analytics=analytics||[];analytics.load=function(e){var t=document.createElement("script");t.type="text/javascript",t.async=!0,t.src=("https:"===document.location.protocol?"https://":"http://")+"d2dq2ahtl5zl1z.cloudfront.net"+"/analytics.js/v1/"+e+"/analytics.min.js";var n=document.getElementsByTagName("script")[0];n.parentNode.insertBefore(t,n);var r=function(e){return function(){analytics.push([e].concat(Array.prototype.slice.call(arguments,0)))}},s=["identify","track"];for(var i=0;i<s.length;i++)analytics[s[i]]=r(s[i])},
@@ -36,14 +36,14 @@
     </h1>
   </header>
   <div class="content"><p>2 ноября <a href="http://www.ruby-lang.org/zh_TW/news/2012/11/02/ruby-2-0-0-preview1-released/">вышла</a> <a href="http://blade.nagaokaut.ac.jp/cgi-bin/scat.rb/ruby/ruby-dev/46348">первая</a> <a href="https://github.com/ruby/ruby/commit/6b8d4ab840b2d76d356ba30dbccfef4f5fd10767">версия</a> Ruby 2.0. По плану, 24 февряля 2013 года выйдет 2.0.0-p0, что значит &mdash; релиз, но пока не для продакшна. </p>
-<h2 id="daty-vyhoda">Даты выхода</h2>
+<h2 id='daty-vyhoda'>Даты выхода</h2>
 <ul>
 <li>Начало декабря: 2.0.0-preview2</li>
 <li>После нового года: 2.0.0-rc1</li>
 <li>Начало февраля: 2.0.0-rc2</li>
 <li>24 февраля: 2.0.0-p0</li>
 </ul>
-<h2 id="novoe-v-2-0-0">Новое в 2.0.0</h2>
+<h2 id='novoe-v-2-0-0'>Новое в 2.0.0</h2>
 <ul>
 <li><a href="#refinements">Refinements</a></li>
 <li><a href="#keyword-arguments">Keyword arguments</a></li>
@@ -57,7 +57,7 @@
 <li>Стандартные библиотеки станут гемами</li>
 <li>Переход на UTF</li>
 </ul>
-<h3 id="refinements">Refinements</h3>
+<h3 id='refinements'>Refinements</h3>
 <p>Давайте рассмотрим следующий кусок кода:</p>
 <div class="CodeRay">
   <div class="code"><pre><span class="keyword">module</span> <span class="class">NumberQuery</span>
@@ -98,7 +98,7 @@
 <span class="keyword">end</span>
 </pre></div>
 </div>
-<h3 id="keyword-arguments">Keyword arguments</h3>
+<h3 id='keyword-arguments'>Keyword arguments</h3>
 <p>Новая фича простая, но очень удобная, это как новые хеши в 1.9, к которым я до сих пор не могу привыкнуть и использую старый вид :)</p>
 <div class="CodeRay">
   <div class="code"><pre><span class="keyword">def</span> <span class="function">wrap</span>(string, before: <span class="string"><span class="delimiter">&quot;</span><span class="content">&lt;</span><span class="delimiter">&quot;</span></span>, after: <span class="string"><span class="delimiter">&quot;</span><span class="content">&gt;</span><span class="delimiter">&quot;</span></span>)
@@ -129,7 +129,7 @@ p wrap(<span class="string"><span class="delimiter">&quot;</span><span class="co
 p wrap(<span class="string"><span class="delimiter">&quot;</span><span class="content">foo</span><span class="delimiter">&quot;</span></span>, <span class="symbol">:before</span> =&gt; <span class="string"><span class="delimiter">&quot;</span><span class="content">{</span><span class="delimiter">&quot;</span></span>, <span class="symbol">:after</span> =&gt; <span class="string"><span class="delimiter">&quot;</span><span class="content">}</span><span class="delimiter">&quot;</span></span>)   <span class="comment"># =&gt; &quot;{foo}&quot;</span>
 </pre></div>
 </div>
-<h3 id="module-prepend">Module#prepend</h3>
+<h3 id='module-prepend'>Module#prepend</h3>
 <p>Тоже очень полезное нововведение, комментарии и объяснения излишне.</p>
 <div class="CodeRay">
   <div class="code"><pre><span class="keyword">module</span> <span class="class">A</span>
@@ -163,7 +163,7 @@ p <span class="constant">B</span>.new.foo   <span class="comment"># =&gt; &quot;
 p <span class="constant">C</span>.new.foo   <span class="comment"># =&gt; &quot;A&quot;</span>
 </pre></div>
 </div>
-<h3 id="converting-convention-to-hash-to_h">Converting convention to Hash: #to_h</h3><div class="CodeRay">
+<h3 id='converting-convention-to-hash-to_h'>Converting convention to Hash: #to_h</h3><div class="CodeRay">
   <div class="code"><pre><span class="keyword">def</span> <span class="function">foo</span>(opts)
   raise <span class="constant">ArgumentError</span>, <span class="string"><span class="delimiter">&quot;</span><span class="content">opts must be a Hash</span><span class="delimiter">&quot;</span></span> <span class="keyword">unless</span> opts.is_a?(<span class="constant">Hash</span>)
   <span class="comment"># do stuff with opts</span>
@@ -183,11 +183,11 @@ p <span class="constant">C</span>.new.foo   <span class="comment"># =&gt; &quot;
 <span class="keyword">end</span>
 </pre></div>
 </div>
-<h3 id="i-a-literal-for-symbol-array">%i: a literal for symbol array</h3><div class="CodeRay">
+<h3 id='i-a-literal-for-symbol-array'>%i: a literal for symbol array</h3><div class="CodeRay">
   <div class="code"><pre>p %i{hurray huzzah whoop}   <span class="comment"># =&gt; [:hurray, :huzzah, :whoop]</span>
 </pre></div>
 </div>
-<h2 id="ustanovka-i-testirovanie-novoy-versii-ruby-2-0-0-preview1">Установка и тестирование новой версии (ruby-2.0.0-preview1)</h2>
+<h2 id='ustanovka-i-testirovanie-novoy-versii-ruby-2-0-0-preview1'>Установка и тестирование новой версии (ruby-2.0.0-preview1)</h2>
 <p>Этот кусок статьи не мой, его я нагло позаимствовал у <a href="http://igor-alexandrov.github.com/blog/2012/11/05/yet-another-ruby-shootout/">Александрова Игоря</a> :)</p>
 
 <p>Железо:</p>
@@ -210,8 +210,8 @@ $ rvm install ruby-2.0.0-preview1
 
 <p>Результаты тестирования:</p>
 
-<p><img alt="Total seconds" src="../blog/2012/Ruby-2-0/total_seconds.png?1356835712" />
-<img alt="Mean seconds" src="../blog/2012/Ruby-2-0/mean_seconds.png?1356835712" /></p>
+<p><img alt="Total seconds" src="Ruby-2-0/total_seconds.png?1356938145" />
+<img alt="Mean seconds" src="Ruby-2-0/mean_seconds.png?1356938145" /></p>
 </div>
   <footer>
     <a href="/blog/2012/Ruby-2-0.html#comments">комментарии</a>
@@ -239,5 +239,8 @@ $ rvm install ruby-2.0.0-preview1
           </div></div>
       </div>
     </div>
+    <script type="text/javascript">analytics.track('Load post page', {
+        post: "Ruby 2.0, что нас ждет?",
+      });</script>
   </body>
 </html>

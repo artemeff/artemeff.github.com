@@ -7,8 +7,8 @@
     <link href="http://feeds.feedburner.com/yuri-artemev" rel="alternate" title="artemeff - Ruby on Rails developer" type="application/rss+xml">
     <title>Тестируем RAM, SSD и HDD на скорость</title>
     <meta content="Сейчас я потихньку занимаюсь своим проектом, когда есть свободное время, и вот недавно выпал вопрос о железе для хостинга. Облака я рассматривать пока не буду, т.к. железки там сказать в принципе не смогут, только если везде стоят одни и те-же. Кстати, скоро ко мне попадет в руки тестовый аккаунт на новой облачной площадке, там и потестирую что и как быстро работает. А сейчас я хочу рассказать о производительности SSD vs RAM Drive vs HDD." name="description">
-    <meta content="ram, ssd, hdd, server-side, rails, test, performance" name="keywords"><link href="../../favicon.png?1356835712" rel="icon" type="image/png" /><link href="../../stylesheets/main.css?1356835712" media="screen" rel="stylesheet" type="text/css" /><script src="http://ajax.googleapis.com/ajax/libs/jquery/1/jquery.min.js" type="text/javascript"></script>
-    <script src="../../javascripts/core.js?1356835712" type="text/javascript"></script><!--html5 enabler-->
+    <meta content="ram, ssd, hdd, server-side, rails, test, performance" name="keywords"><link href="../../favicon.png?1356938145" rel="icon" type="image/png" /><link href="../../stylesheets/main.css?1356938145" media="screen" rel="stylesheet" type="text/css" /><script src="http://ajax.googleapis.com/ajax/libs/jquery/1/jquery.min.js" type="text/javascript"></script>
+    <script src="../../javascripts/core.js?1356938145" type="text/javascript"></script><!--html5 enabler-->
     <script type="text/javascript">;("header footer section aside nav article figure figcaption hgroup time").replace(/\w+/g,function(a){document.createElement(a)})</script>
     <!--Segment.io-->
     <script type="text/javascript">var analytics=analytics||[];analytics.load=function(e){var t=document.createElement("script");t.type="text/javascript",t.async=!0,t.src=("https:"===document.location.protocol?"https://":"http://")+"d2dq2ahtl5zl1z.cloudfront.net"+"/analytics.js/v1/"+e+"/analytics.min.js";var n=document.getElementsByTagName("script")[0];n.parentNode.insertBefore(t,n);var r=function(e){return function(){analytics.push([e].concat(Array.prototype.slice.call(arguments,0)))}},s=["identify","track"];for(var i=0;i<s.length;i++)analytics[s[i]]=r(s[i])},
@@ -49,7 +49,7 @@
 <p>Дальше связка nginx + unicorn и тестирование нагрузки. Сначала хотел использовать siege, но что-то там не срослось, давно уже было, не помню :) И таки взял ab.</p>
 
 <p>Результаты получились очень странными:</p>
-<h2 id="hdd">HDD</h2><div class="CodeRay">
+<h2 id='hdd'>HDD</h2><div class="CodeRay">
   <div class="code"><pre>Document Length:      719 bytes
 Concurrency Level:    4
 Time taken for tests: 40.510 seconds
@@ -66,7 +66,7 @@ Processing: 1193    1596    2400
 Total:      1193    1596    2400
 </pre></div>
 </div>
-<h2 id="ram-disk">RAM disk</h2><div class="CodeRay">
+<h2 id='ram-disk'>RAM disk</h2><div class="CodeRay">
   <div class="code"><pre>Document Length:      719 bytes
 Concurrency Level:    4
 Time taken for tests: 39.272 seconds
@@ -83,7 +83,7 @@ Processing: 366     1546    1645
 Total:      366     1546    1645
 </pre></div>
 </div>
-<h2 id="ssd">SSD</h2><div class="CodeRay">
+<h2 id='ssd'>SSD</h2><div class="CodeRay">
   <div class="code"><pre>Document Length:      719 bytes
 Concurrency Level:    4
 Time taken for tests: 39.274 seconds
@@ -114,7 +114,7 @@ SSD:        398     1546    1627    2546.21
 <p>В следующий раз буду проводить тест SSD vs RAM disk уже на серверной машине, и Ruby с гемами положу в оперативную память, когда буду ее тестировать, а то сейчас, как мне кажется, у RAM не сильный выигрышь просто потому что сам руби был на SSD.</p>
 
 <p>Ну и в следующий раз постараюсь с графиками, а то голые цифры мне совсем не нравятся.</p>
-<h3 id="upd">UPD</h3>
+<h3 id='upd'>UPD</h3>
 <p>В комментариях посоветовали провести тесты на запись, результаты получились адекватнее.</p>
 
 <p>Код тестирования записи:</p>
@@ -129,7 +129,7 @@ SSD:        398     1546    1627    2546.21
 <span class="keyword">end</span>
 </pre></div>
 </div>
-<h2 id="hdd">HDD</h2><div class="CodeRay">
+<h2 id='hdd'>HDD</h2><div class="CodeRay">
   <div class="code"><pre>Document Length:      975 bytes
 Concurrency Level:    4
 Time taken for tests: 83.542 seconds
@@ -147,7 +147,7 @@ Processing: 540     3290    4829
 Total:      540     3290    4829
 </pre></div>
 </div>
-<h2 id="ram-disk">RAM disk</h2><div class="CodeRay">
+<h2 id='ram-disk'>RAM disk</h2><div class="CodeRay">
   <div class="code"><pre>Document Length:      972 bytes
 Concurrency Level:    4
 Time taken for tests: 13.850 seconds
@@ -165,7 +165,7 @@ Processing: 130     545     577
 Total:      130     545     577
 </pre></div>
 </div>
-<h2 id="ssd">SSD</h2><div class="CodeRay">
+<h2 id='ssd'>SSD</h2><div class="CodeRay">
   <div class="code"><pre>Document Length:      974 bytes
 Concurrency Level:    4
 Time taken for tests: 15.569 seconds
@@ -194,7 +194,7 @@ SSD:        183     613     664     6422.87
 </pre></div>
 </div>
 
-<p><img alt="Результаты" src="../blog/2012/Ram-ssd-hdd/chart.png?1356835712" /></p>
+<p><img alt="Результаты" src="Ram-ssd-hdd/chart.png?1356938145" /></p>
 </div>
   <footer>
     <a href="/blog/2012/Ram-ssd-hdd.html#comments">комментарии</a>
@@ -225,5 +225,8 @@ SSD:        183     613     664     6422.87
           </div></div>
       </div>
     </div>
+    <script type="text/javascript">analytics.track('Load post page', {
+        post: "Тестируем RAM, SSD и HDD на скорость",
+      });</script>
   </body>
 </html>
