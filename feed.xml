@@ -5,10 +5,28 @@
   <id>http://artemeff.com/</id>
   <link href="http://artemeff.com/"/>
   <link href="http://artemeff.com/feed.xml" rel="self"/>
-  <updated>2012-11-24T20:00:00Z</updated>
+  <updated>2013-01-01T20:00:00Z</updated>
   <author>
     <name>Yuri Artemev</name>
   </author>
+  <entry>
+    <title>Еще одно обновление бложика</title>
+    <link rel="alternate" href="/blog/2013/Another-blog-updates.html"/>
+    <id>/blog/2013/Another-blog-updates.html</id>
+    <published>2013-01-01T20:00:00Z</published>
+    <updated>2013-01-01T20:00:00Z</updated>
+    <author>
+      <name>Yuri Artemev</name>
+    </author>
+    <summary type="html">&lt;p&gt;Большинство будет гулять еще очень долго после новогодней ночи, а я? А я бложик обновил. Коль в дизайнеры решил податься, снова, то и дизайн нужен соответствующий, чтобы можно было презентовать и себя, и свои навыки работы с графикой.&lt;/p&gt;
+
+&lt;p&gt;На самом деле, дизайнером работал почти все время, правда чаще всего для себя, или что-то по мелочи дизайнерам заказчиков помогал.&lt;/p&gt;
+</summary>
+    <content type="html">&lt;p&gt;Большинство будет гулять еще очень долго после новогодней ночи, а я? А я бложик обновил. Коль в дизайнеры решил податься, снова, то и дизайн нужен соответствующий, чтобы можно было презентовать и себя, и свои навыки работы с графикой.&lt;/p&gt;
+
+&lt;p&gt;На самом деле, дизайнером работал почти все время, правда чаще всего для себя, или что-то по мелочи дизайнерам заказчиков помогал.&lt;/p&gt;
+</content>
+  </entry>
   <entry>
     <title>Ruby 2.0, что нас ждет?</title>
     <link rel="alternate" href="/blog/2012/Ruby-2-0.html"/>
