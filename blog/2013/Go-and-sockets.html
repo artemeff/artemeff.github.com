@@ -5,7 +5,7 @@
   <meta content="kV0pbQhJgmKN4HYX_lWYGipG-w7cKmFleQ-4ZbkAQX0" name="google-site-verification">
   <link href="http://feeds.feedburner.com/yuri-artemev" rel="alternate" title="artemeff - Ruby on Rails developer" type="application/rss+xml">
   <title>Go &amp; sockets</title>
-  <meta content="Передомной была поставлена задача: необходимо написать модуль для сайта, чтобы тот отдавал данные пользователю в реальном времени. Сайт не для корпоратива, значит старые браузеры можно не поддерживать. Решение пало на использование WebSocket, т.к...." name="description">
+  <meta content="Передо мной была поставлена задача: необходимо написать модуль для сайта, чтобы тот отдавал данные пользователю в реальном времени. Сайт не для корпоратива, значит старые браузеры можно не поддерживать. Решение пало на использование WebSocket, т.к..." name="description">
   <meta content="go, performance, websocket, tcpsocket" name="keywords"><link href="../../favicon.png?1363524402" rel="icon" type="image/png" /><link href="../../stylesheets/main.css?1363524603" media="screen" rel="stylesheet" type="text/css" /><script src="http://ajax.googleapis.com/ajax/libs/jquery/1/jquery.min.js" type="text/javascript"></script>
   <script src="../../javascripts/jquery.peity.min.js?1363524402" type="text/javascript"></script>
   <script src="../../javascripts/core.js?1363524402" type="text/javascript"></script><!--html5 enabler-->
@@ -37,7 +37,7 @@
                 <a href="/blog/2013/Go-and-sockets.html">Go &amp; sockets</a>
               </h1>
             </header>
-            <div class="content"><p>Передомной была поставлена задача: необходимо написать модуль для сайта, чтобы тот отдавал данные пользователю в реальном времени. Сайт не для корпоратива, значит старые браузеры можно не поддерживать. Решение пало на использование WebSocket, т.к. это быстро и nginx начал поддерживать их проксирование.</p>
+            <div class="content"><p>Передо мной была поставлена задача: необходимо написать модуль для сайта, чтобы тот отдавал данные пользователю в реальном времени. Сайт не для корпоратива, значит старые браузеры можно не поддерживать. Решение пало на использование WebSocket, т.к. это быстро и nginx начал поддерживать их проксирование.</p>
               
               <p>По началу, как и многие кто «не шарит», я выбрал <a href="http://socket.io">Socket.IO</a>. Использовал его в одном из своих проектов, который так и не добрался до продакшна. Для общения между NodeJS и Rails использовал прокладку из Redis с его pub/sub. Все было хорошо, пока не прочел про фейлы Socket.IO (<a href="https://groups.google.com/d/msg/ror2ru/0vPgXCYtC9Y/_UONIU53ypAJ">1</a>, <a href="https://groups.google.com/d/msg/ror2ru/0vPgXCYtC9Y/kznukvB0K50J">2</a>), как он жрет память и процессор, и моя прокладка подверглась критике, сказали, что это лишние миллисекунды.</p>
               
