@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="ru"><meta charset="utf-8">
+  <meta content="IE=edge,chrome=1" http-equiv="X-UA-Compatible">
+  <meta content="width=device-width, initial-scale=1" name="viewport">
+  <meta content="kV0pbQhJgmKN4HYX_lWYGipG-w7cKmFleQ-4ZbkAQX0" name="google-site-verification">
+  <link href="http://feeds.feedburner.com/yuri-artemev" rel="alternate" title="artemeff - Ruby on Rails developer" type="application/rss+xml">
+  <title>Go &amp; sockets</title>
+  <meta content="Передомной была поставлена задача: необходимо написать модуль для сайта, чтобы тот отдавал данные пользователю в реальном времени. Сайт не для корпоратива, значит старые браузеры можно не поддерживать. Решение пало на использование WebSocket, т.к...." name="description">
+  <meta content="go, performance, websocket, tcpsocket" name="keywords"><link href="../../favicon.png?1363524402" rel="icon" type="image/png" /><link href="../../stylesheets/main.css?1363524603" media="screen" rel="stylesheet" type="text/css" /><script src="http://ajax.googleapis.com/ajax/libs/jquery/1/jquery.min.js" type="text/javascript"></script>
+  <script src="../../javascripts/jquery.peity.min.js?1363524402" type="text/javascript"></script>
+  <script src="../../javascripts/core.js?1363524402" type="text/javascript"></script><!--html5 enabler-->
+  <script type="text/javascript">;("header footer section aside nav article figure figcaption hgroup time").replace(/\w+/g,function(a){document.createElement(a)})</script>
+  <!--Segment.io-->
+  <script type="text/javascript">if (document.location.host == "artemeff.com"){
+      var analytics=analytics||[];analytics.load=function(e){var t=document.createElement("script");t.type="text/javascript",t.async=!0,t.src=("https:"===document.location.protocol?"https://":"http://")+"d2dq2ahtl5zl1z.cloudfront.net"+"/analytics.js/v1/"+e+"/analytics.min.js";var n=document.getElementsByTagName("script")[0];n.parentNode.insertBefore(t,n);var r=function(e){return function(){analytics.push([e].concat(Array.prototype.slice.call(arguments,0)))}},s=["identify","track"];for(var i=0;i<s.length;i++)analytics[s[i]]=r(s[i])},analytics.load("dgbr7ym");
+    } else {
+      var analytics = { track: function() {} };
+    }</script><body>
+    <div id="container">
+      <section id="menu"><header>
+          <a class="logo" data-to="#about" href="/"></a>
+        </header>
+        <nav>
+          <a data-to="#about" href="/#about">
+            <div class="ico about"></div>
+            <span>ОБО МНЕ</span></a><a data-to="#blog" href="/#blog">
+            <div class="ico blog"></div>
+            <span>БЛОГ</span></a><a data-to="#folio" href="/#folio">
+            <div class="ico folio"></div>
+            <span>ПОРТФОЛИО</span></a>
+        </nav></section>
+      <div id="main">
+        <div class="box" id="blog"><article>
+            <header>
+              <time class="pull-right" datetime="Март 17, 2013">Март 17, 2013</time>
+              <h1 class="title">
+                <a href="/blog/2013/Go-and-sockets.html">Go &amp; sockets</a>
+              </h1>
+            </header>
+            <div class="content"><p>Передомной была поставлена задача: необходимо написать модуль для сайта, чтобы тот отдавал данные пользователю в реальном времени. Сайт не для корпоратива, значит старые браузеры можно не поддерживать. Решение пало на использование WebSocket, т.к. это быстро и nginx начал поддерживать их проксирование.</p>
+              
+              <p>По началу, как и многие кто «не шарит», я выбрал <a href="http://socket.io">Socket.IO</a>. Использовал его в одном из своих проектов, который так и не добрался до продакшна. Для общения между NodeJS и Rails использовал прокладку из Redis с его pub/sub. Все было хорошо, пока не прочел про фейлы Socket.IO (<a href="https://groups.google.com/d/msg/ror2ru/0vPgXCYtC9Y/_UONIU53ypAJ">1</a>, <a href="https://groups.google.com/d/msg/ror2ru/0vPgXCYtC9Y/kznukvB0K50J">2</a>), как он жрет память и процессор, и моя прокладка подверглась критике, сказали, что это лишние миллисекунды.</p>
+              
+              <p>И тогда пришлось искать замену, т.к. это решение не приемлемо для текущего проекта. Задача там <a href="https://groups.google.com/d/msg/ror2ru/nOioVkvGBtI/Is5xSi80Zr8J">не тривиальая</a>, нужно сделать отдачу контента пользователям по подписанным каналам, число которых эквивалентно числу пользовтелей, плюс пачка общих.</p>
+              
+              <p>Сначала подумывал об Erlang, но я его совсем не знаю и времени на изучение мало. Он идеально подошел бы для этой задачи. Найм программиста не рассматривается вообще, денег у нас нет. Дальше по списку пошел язык Go, эдакий гибрид из Python и C, компилируемый и легкий в освоении, что являлось огромным плюсом в его выборе, а еще есть нативная поддержка TCP и Web сокетов.</p>
+              
+              <p>На освоение Go «как корова, без доков писать не могу» ушло два вечера, чего мне вполне хватило. Сначала написал свое решение, страшно-криво, но оно работало. Все просто &mdash; рельса пишет в TCPSocket, Go его читает и отдает контент пользователю по WebSocket&#39;у. Но решение было на только страшным, что пришлось искать что-то готовое.</p>
+              
+              <p>Так нашлелся набор инструментов <a href="https://github.com/bitly/nsq">NSQ</a>, который разрабатывают небезызвестные <a href="https://bitly.com">bit.ly</a>. С <a href="https://github.com/bitly/nsq#performance">производительностью все хорошо</a>, есть каналы из коробки и простейшая <a href="https://github.com/ClarityServices/ruby_nsq">обертка для Ruby</a>. Синтетические тесты показали себя очень хорошо, NSQ подходит для решения поставленной задачи, осталось написать только отдачу контента пользователям и простую авторизацию.</p>
+              
+              <p>Когда все это сделаю &mdash; выложу наработки на github, авось пригодится кому. И в планах все таки выучить Erlang, гвоорят, отличная штука для подобных задач, где бушуют высокая нагрузка и бесконечный аптайм.</p>
+              </div>
+            <footer>
+              <a href="/blog/2013/Go-and-sockets.html#comments">комментарии</a>
+              <div class="tags">
+                <a href="/tags/go.html">go</a>, 
+                <a href="/tags/performance.html">performance</a>, 
+                <a href="/tags/websocket.html">websocket</a>, 
+                <a href="/tags/tcpsocket.html">tcpsocket</a></div>
+            </footer>
+          </article><a href="https://plus.google.com/117649338146557350070" rel="author"></a><div class="post comments" id="comments">
+            <div class="meta">
+              <h6>Комментарии</h6>
+            </div>
+            <div class="article">
+              <div id="disqus_thread"></div>
+              <script type="text/javascript">var disqus_shortname = 'artemeff';
+                
+                (function() {
+                    var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+                    dsq.src = 'http://' + disqus_shortname + '.disqus.com/embed.js';
+                    (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+                })();</script>
+              <noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">>comments powered by Disqus.</a></noscript>
+            </div>
+          </div></div>
+      </div>
+    </div>
+    <script type="text/javascript">analytics.track('Load post page', {
+        post: "Go &amp; sockets",
+      });</script>
+  </body>
+</html>
