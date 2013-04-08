@@ -1,0 +1,1 @@
+[Moved to Rails](http://artemeff.com/blog/13-ocherednoe-obnovlenie-blozhika)
