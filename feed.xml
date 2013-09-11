@@ -7,7 +7,7 @@ layout: nil
   <title>Yuri Artemev</title>
   <link href="http://artemeff.com/"/>
   <link type="application/atom+xml" rel="self" href="http://artemeff.com/feed.xml"/>
-  <updated>{{ site.time | date_to_xmlschema }}</updated>
+  <updated>{{ site.posts.first.date | date_to_xmlschema }}</updated>
   <id>http://artemeff.com/</id>
   <author>
     <name>Yuri Artemev</name>
