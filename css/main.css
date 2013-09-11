@@ -1,0 +1,204 @@
+/* Base styles
+   ----------- */
+
+html {
+  font-size: 16px;
+  overflow-y: scroll;
+}
+
+body {
+  color: #444;
+  font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+  font-size: 1em;
+  line-height: 1.6em;
+}
+
+a,
+a:visited {
+  color: #FD7722;
+  text-decoration: underline;
+}
+
+a.spec,
+a.spec:visited {
+  text-decoration: none;
+}
+
+a:hover {
+  text-decoration: none;
+}
+
+a:hover,
+a:active {
+  outline: 0;
+}
+
+h2 a {
+  text-decoration: none;
+}
+
+hr {
+  height: 0;
+  border: none;
+  border-bottom: 1px solid #ccc;
+}
+
+#parallax {
+  background-attachment: fixed !important;
+}
+
+/* Utilities
+   ----------- */
+
+.clearfix:before,
+.clearfix:after {
+  content: " ";
+  display: table;
+}
+
+.clearfix:after {
+  clear: both;
+}
+
+/**
+ * For IE 6/7 only
+ * Include this rule to trigger hasLayout and contain floats.
+ */
+.clearfix {
+  *zoom: 1;
+}
+
+/* Grid
+   ----------- */
+
+.container {
+  width: 800px;
+  margin: 0 auto;
+}
+
+/* Header
+   ----------- */
+
+header {
+  height: 300px;
+  overflow: hidden;
+  cursor: default;
+  text-align: center;
+
+  background-image:url(/images/main/banner.jpg);
+  background-position: 50% 0;
+}
+
+header .container {
+  margin-top: 100px;
+}
+
+header .logo {
+  font-size: 4em;
+}
+
+header span {
+  color: #fff;
+}
+
+header a {
+  color: #fff !important;
+  opacity: .7;
+  font-size: 2em;
+  font-weight: bold;
+  text-decoration: none;
+
+  transition: opacity .3s;
+}
+
+header a:hover {
+  opacity: 1;
+}
+
+nav {
+  margin-top: 50px;
+}
+
+nav a {
+  margin: 0 10px;
+  font-size: 1em;
+}
+
+/* Content
+   ----------- */
+
+section {
+  /* ... */
+}
+
+/* Articles
+   ----------- */
+
+article {
+  margin-top: 40px;
+}
+
+.post .post-meta {
+  color: #999;
+}
+
+.post-comments {
+  margin: 40px 0;
+}
+
+.post-full .post-title {
+  font-size: 3em;
+  text-align: center;
+  line-height: 1em;
+}
+
+.post-full .post-meta {
+  display: block;
+  text-align: center;
+}
+
+.post-preview .post-title {
+  font-size: 2em;
+}
+
+.post-preview .post-title a {
+  text-decoration: none;
+}
+
+.post-preview .post-meta {
+  float: right;
+}
+
+/* Footer
+   ----------- */
+
+footer {
+  display: none;
+}
+
+/* Responsive
+   ----------- */
+
+@media only screen and (max-width: 900px) {
+  header .logo {
+    font-size: 2.5em;
+  }
+
+  .container {
+    -moz-box-sizing: border-box;
+         box-sizing: border-box;
+
+    width: 100%;
+    padding: 0 30px;
+  }
+}
+
+@media only screen and (max-height: 700px) {
+  header {
+    height: 210px;
+  }
+
+  header .container {
+    margin-top: 50px;
+  }
+}

@@ -1,0 +1,32 @@
+---
+layout: nil
+---
+<?xml version="1.0"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+ 
+  <title>Yuri Artemev</title>
+  <link href="http://artemeff.com/"/>
+  <link type="application/atom+xml" rel="self" href="http://artemeff.com/feed.xml"/>
+  <updated>{{ site.time | date_to_xmlschema }}</updated>
+  <id>http://artemeff.com/</id>
+  <author>
+    <name>Yuri Artemev</name>
+    <email>i@artemeff.com</email>
+  </author>
+
+  {% for post in site.posts %}
+  <entry>
+    <id>http://artemeff.com{{ post.id }}</id>
+    <link type="text/html" rel="alternate" href="http://artemeff.com{{ post.url }}"/>
+    <title>{{ post.title }}</title>
+    <published>{{ post.date | date_to_xmlschema }}</published>
+    <updated>{{ post.date | date_to_xmlschema }}</updated>
+    <author>
+      <name>Your Name</name>
+      <uri>http://artemeff.com/</uri>
+    </author>
+    <content type="html">{{ post.content | xml_escape }}</content>
+  </entry>
+  {% endfor %}
+ 
+</feed>

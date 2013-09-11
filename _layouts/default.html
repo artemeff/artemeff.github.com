@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+  <title>{{ page.title }}</title>
+  <meta name="viewport" content="width=device-width">
+  <meta name="keywords" content="ruby, rails, ruby on rails, javascript, go, golang, elixir">
+  <meta name="description" content="Yuri Artemev - developer">
+
+
+  <link rel="stylesheet" href="/css/normalize.css">
+  <link rel="stylesheet" href="/css/syntax.css">
+  <link rel="stylesheet" href="/css/main.css">
+</head>
+<body>
+
+  <header id="parallax" class="{{ page.colors }}" style="background-image:url(/images/{{ page.header }}/header.jpg)">
+    <div class="container">
+      <a class="logo" href="/">Yuri Artemev</a>
+      <nav>
+        <a href="/blog">Блог</a>
+        <a href="/projects">Проекты</a>
+        <a href="/about">Обо мне</a>     
+        <br>
+        <a href="/blog">GitHub</a>
+        <a href="/projects">Twitter</a>
+        <a href="/projects">Coderwall</a>
+      </nav>
+    </div>
+  </header>
+
+  <section>
+    <div class="container">
+      {{ content }}
+    </div>
+  </section>
+
+  <footer>
+    <div class="container">
+      footer
+    </div>
+  </footer>
+
+  <script>
+    var speed = 4.0, parallax = document.getElementById('parallax');
+    
+    window.onscroll = function() {
+      parallax.style.backgroundPosition = '50%' + (-window.pageYOffset / speed) + 'px';
+    }
+
+    var _gaq = _gaq || [];
+    _gaq.push(['_setAccount', 'UA-27383670-1']);
+    _gaq.push(['_trackPageview']);
+
+    (function() {
+      var ga = document.createElement('script');
+      ga.type = 'text/javascript';
+      ga.async = true;
+      ga.src = 'http://www.google-analytics.com/ga.js';
+      var s = document.getElementsByTagName('script')[0];
+      s.parentNode.insertBefore(ga, s);
+    })();
+  </script>
+</body>
+</html>

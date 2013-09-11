@@ -1,1 +1,1 @@
-[Moved to Rails](http://artemeff.com/blog/13-ocherednoe-obnovlenie-blozhika)
+### [Yuri Artemev; blog](http://artemeff.com)
