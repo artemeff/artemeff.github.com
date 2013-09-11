@@ -101,10 +101,6 @@ header .logo {
   font-size: 4em;
 }
 
-header span {
-  color: #fff;
-}
-
 header a {
   color: #fff !important;
   opacity: .7;
@@ -113,6 +109,10 @@ header a {
   text-decoration: none;
 
   transition: opacity .3s;
+}
+
+header.dark a {
+  color: #000 !important;
 }
 
 header a:hover {
@@ -182,7 +182,7 @@ article {
    ----------- */
 
 footer {
-  display: none;
+  height: 80px;
 }
 
 /* Responsive
