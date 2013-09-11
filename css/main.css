@@ -202,7 +202,7 @@ footer {
   }
 }
 
-@media only screen and (max-height: 700px) {
+@media only screen and (max-height: 600px) {
   header {
     height: 210px;
   }
