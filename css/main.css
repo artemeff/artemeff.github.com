@@ -146,6 +146,11 @@ article {
   color: #999;
 }
 
+.post-content img {
+  display: block;
+  margin: 0 auto;
+}
+
 .post-comments {
   margin: 40px 0;
 }
