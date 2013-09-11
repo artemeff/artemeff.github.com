@@ -43,6 +43,10 @@ hr {
   border-bottom: 1px solid #ccc;
 }
 
+pre {
+  margin: 0;
+}
+
 #parallax {
   background-attachment: fixed !important;
 }
