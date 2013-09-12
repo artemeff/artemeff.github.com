@@ -47,6 +47,15 @@ pre {
   margin: 0;
 }
 
+pre code {
+  padding: 0;
+}
+
+code {
+  background: #f8f8f8;
+  padding: 0 3px;
+}
+
 #parallax {
   background-attachment: fixed !important;
 }
