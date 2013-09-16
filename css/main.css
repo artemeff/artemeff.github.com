@@ -187,6 +187,50 @@ article {
   float: right;
 }
 
+/* Projects
+   ----------- */
+
+.proj {
+  margin-top: 20px;
+}
+
+.proj-work,
+.proj-oss {
+  width: 50%;
+  float: left;
+}
+
+.proj-work {
+  text-align: center;
+}
+
+.proj-work,
+.proj-work a {
+  color: #888;
+}
+
+.proj-oss {
+  /* ... */
+}
+
+.proj-oss .highlight {
+  margin: 0 20px;
+}
+
+.proj-oss small,
+.proj-oss small a {
+  font-weight: normal;
+  color: #888;
+}
+
+.proj-oss .ruby {
+  color: #701516;
+}
+
+.proj-oss .elixir {
+  color: #6E4A7E;
+}
+
 /* Footer
    ----------- */
 
