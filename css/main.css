@@ -33,6 +33,11 @@ a:active {
   outline: 0;
 }
 
+h1, h2, h3,
+h4, h5, h6 {
+  font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+}
+
 h2 a {
   text-decoration: none;
 }
@@ -107,7 +112,8 @@ header .container {
 }
 
 header .logo {
-  font-size: 4em;
+  font-size: 2.5em;
+  letter-spacing: 6px;
 }
 
 header a {
@@ -148,7 +154,10 @@ section {
    ----------- */
 
 article {
-  margin-top: 40px;
+  margin: 40px auto 0;
+  width: 600px;
+  font-family: "PT Sans", sans-serif;
+  text-align: justify;
 }
 
 .post .post-meta {
@@ -261,6 +270,25 @@ footer {
 
     width: 100%;
     padding: 0 30px;
+  }
+
+  article {
+    width: auto;
+    margin: 40px 0 0;
+  }
+
+  .proj {
+    width: 400px;
+    margin: 20px auto;
+  }
+
+  .proj-work, .proj-oss {
+    float: none;
+    width: 100%;
+  }
+
+  .proj-work {
+    margin-bottom: 40px;
   }
 }
 
