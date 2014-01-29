@@ -160,6 +160,10 @@ article {
   text-align: justify;
 }
 
+article li {
+  list-style-type: hebrew;
+}
+
 .post .post-meta {
   color: #999;
 }
