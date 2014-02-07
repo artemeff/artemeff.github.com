@@ -83,7 +83,7 @@ msearch(queries)
 SELECT
   array_agg(id) AS ids
 FROM
-  "measure_bases"
+  "table"
 GROUP BY
   ST_SnapToGrid(location, 0.01, 0.01)
 ```
