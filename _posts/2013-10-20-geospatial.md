@@ -72,3 +72,30 @@ msearch(queries)
 ```
 
 Есть вероятность что эту задачу можно решить более элегантным/производительным способом, но мне мозгов на большее не хватает. Если у кого есть мысли или есть что почитать - с радостью выслушаю и ознакомлюсь.
+
+## UPD.
+
+Нашел таки прекрасное решение, в котром удалось отказатсья от Elasticsearch и использовать только PostgreSQL + PostGIS.
+
+Эта моя задача называется `geo clustering` и решается одним запросом в базу:
+
+```sql
+SELECT
+  array_agg(id) AS ids
+FROM
+  "measure_bases"
+GROUP BY
+  ST_SnapToGrid(location, 0.01, 0.01)
+```
+
+Функция [ST_SnapToGrid](http://postgis.refractions.net/documentation/manual-2.0/ST_SnapToGrid.html) делит карту на квадраты и группирует точки в каждом из них, в результате мы получаем список квадратов в каждом из которых лежит список точек в этом квадрате, дальше все просто. У меня все это выглядит примерно так:
+
+```ruby
+def clusterize(take = 2, x1, y1, x2, y2)
+  select('array_agg(id) AS ids')
+    .where("location && ST_MakeEnvelope(#{x1}, #{y1}, #{x2}, #{y2}, #{SRID})")
+    .group("ST_SnapToGrid(location, 0.01, 0.01)")
+    .map(&:ids).map { |points| points.sample(take) }
+    .flatten
+end
+```
