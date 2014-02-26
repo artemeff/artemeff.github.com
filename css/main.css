@@ -262,7 +262,7 @@ footer {
 /* Responsive
    ----------- */
 
-@media only screen and (max-width: 900px) {
+@media only screen and (max-width: 800px) {
   header .logo {
     font-size: 2.5em;
   }
@@ -280,6 +280,10 @@ footer {
     margin: 40px 0 0;
   }
 
+  article img {
+    width: 100%;
+  }
+
   .proj {
     width: 400px;
     margin: 20px auto;
@@ -292,6 +296,16 @@ footer {
 
   .proj-work {
     margin-bottom: 40px;
+  }
+}
+
+@media only screen and (max-width: 400px) {
+  header .logo {
+    font-size: 1.5em;
+  }
+
+  nav {
+    font-size: 0.8em;
   }
 }
 
