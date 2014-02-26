@@ -41,10 +41,12 @@
   <footer></footer>
 
   <script>
-    var speed = 4.0, parallax = document.getElementById('parallax');
+    var parallax = document.getElementById('parallax');
     
     window.onscroll = function() {
-      parallax.style.backgroundPosition = '50%' + (-window.pageYOffset / speed) + 'px';
+      if (window.pageYOffset < 400) {
+        parallax.style.backgroundPosition = '50%' + (-window.pageYOffset / 4) + 'px';
+      }
     }
 
     var _gaq = _gaq || [];
