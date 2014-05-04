@@ -8,7 +8,7 @@ html {
 
 body {
   color: #444;
-  font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+  font-family: 'Open Sans', Helvetica, Arial, sans-serif;
   font-size: 1em;
   line-height: 1.6em;
 }
@@ -33,13 +33,12 @@ a:active {
   outline: 0;
 }
 
-h1, h2, h3,
-h4, h5, h6 {
-  font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
-}
-
 h2 a {
   text-decoration: none;
+}
+
+ul {
+  padding-left: 2em;
 }
 
 hr {
@@ -104,26 +103,82 @@ header {
   cursor: default;
   text-align: center;
 
-  background-image:url(/images/main/banner.jpg);
+  background-image: url('/images/main/banner.jpg');
   background-position: 50% 0;
 }
 
 header .container {
-  margin-top: 100px;
+  margin-top: 50px;
 }
 
-header .logo {
+header #logo {
+  display: block;
+  width: 400px;
+  height: 160px;
+  margin: 0 auto;
+  vertical-align: middle;
   font-size: 2.5em;
-  letter-spacing: 6px;
+  letter-spacing: 2px;
+  line-height: 4em;
+  cursor: pointer;
 }
 
-header a {
+header #logo #flipping_card {
+  -webkit-perspective: 800px;
+  perspective: 800px;
+  -webkit-transform-style: preserve-3d;
+  transform-style: preserve-3d;
+  -webkit-transition: -webkit-transform 1s;
+  transition: transform 1s;
+}
+
+header #logo:hover,
+header #logo.active {
+  opacity: 1;
+}
+
+header #logo.active {
+  /*height: 200px;*/
+}
+
+header #logo.active #flipping_card {
+  -webkit-transform: rotateY(180deg);
+  -ms-transform: rotateY(180deg);
+  transform: rotateY(180deg);
+}
+
+header #flipping_card div {
+  display: block;
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  -webkit-backface-visibility: hidden;
+  backface-visibility: hidden;
+}
+
+header #flipping_card .front {
+  text-align: center;
+}
+
+header #flipping_card .back {
+  -webkit-transform: rotateY(180deg);
+  -ms-transform: rotateY(180deg);
+  transform: rotateY(180deg);
+}
+
+header #flipping_card .back img {
+  border-radius: 100%;
+}
+
+header a,
+header #logo {
   color: #fff !important;
   opacity: .7;
   font-size: 2em;
   font-weight: bold;
   text-decoration: none;
 
+  -webkit-transition: opacity .3s;
   transition: opacity .3s;
 }
 
@@ -135,20 +190,31 @@ header a:hover {
   opacity: 1;
 }
 
-nav {
-  margin-top: 50px;
+header #navigation {
+  -webkit-transition: opacity .3s;
+  transition: opacity .3s;
 }
 
-nav a {
+header #navigation.active {
+  opacity: 0;
+}
+
+header nav {
+  text-align: center;
+}
+
+header nav a {
   margin: 0 10px;
   font-size: 1em;
+  display: inline-block;
+  width: 80px;
 }
 
 /* Content
    ----------- */
 
 section {
-  /* ... */
+  overflow: hidden;
 }
 
 /* Articles
@@ -157,20 +223,60 @@ section {
 article {
   margin: 40px auto 0;
   width: 600px;
-  font-family: "PT Sans", sans-serif;
 }
 
 article li {
   list-style-type: hebrew;
 }
 
+.post h1 {
+  line-height: 32px;
+}
+
+.post h1, .post h2,
+.post h3, .post h4,
+.post h5, .post h6 {
+  text-align: center;
+}
+
+.post .post-title {
+  font-size: 3em;
+  margin-bottom: 14px;
+  line-height: 1.2em;
+}
+
+.post-prime .post-meta {
+  float: none;
+  text-align: center;
+}
+
+.post-prime .post-content {
+  font-size: 16px;
+}
+
+.post .post-date,
 .post .post-meta {
   color: #999;
+  font-weight: 200;
+}
+
+.post-meta {
+  display: block;
+}
+
+.post-content p {
+  text-indent: 2em;
+  margin-bottom: 1.5em;
 }
 
 .post-content img {
   display: block;
+  max-width: 600px;
   margin: 0 auto;
+}
+
+.post-content ul {
+  margin-bottom: 2.5em;
 }
 
 .post-comments {
@@ -179,25 +285,34 @@ article li {
 
 .post-full .post-title {
   font-size: 3em;
-  text-align: center;
-  line-height: 1em;
 }
 
-.post-full .post-meta {
+.post-full .post-date {
   display: block;
   text-align: center;
 }
 
-.post-preview .post-title {
-  font-size: 2em;
-}
-
-.post-preview .post-title a {
+.post-title a {
   text-decoration: none;
 }
 
-.post-preview .post-meta {
-  float: right;
+.post-title a:hover {
+  text-decoration: underline;
+}
+
+.post-preview {
+  margin: 0 auto 0;
+}
+
+.post-preview .post-title {
+  font-size: 1em;
+  display: inline-block;
+  margin: 0;
+}
+
+.post-preview .post-date {
+  color: #ccc;
+  font-size: 12px;
 }
 
 /* Projects

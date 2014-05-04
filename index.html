@@ -6,13 +6,19 @@ title:  Yuri Artemev
 ---
 
 <section>
+  {% assign post = site.posts.first %}
+  <article class="post post-prime">
+    <h1 class="post-title"><a href="{{ post.url }}">{{ post.title }}</a></h1>
+    <span class="post-meta">{{ post.date | date: "%-d %B" }}</span>
+    <div class="post-content">
+      {{ post.excerpt }}
+    </div>
+  </article>
+
   {% for post in site.posts %}
     <article class="post post-preview">
-      <span class="post-meta">{{ post.date | date: "%d.%m.%Y" }}</span>
-      <h1 class="post-title"><a href="{{ post.url }}">{{ post.title }}</a></h1>
-      <div class="post-content">
-        {{ post.excerpt }}
-      </div>
+      <span class="post-date">{{ post.date | date: "%d.%m.%Y" }}</span>
+      <h2 class="post-title"><a href="{{ post.url }}">{{ post.title }}</a></h2>
     </article>
   {% endfor %}
 </div>

@@ -19,16 +19,26 @@
 
   <header id="parallax" class="{{ page.colors }}" style="background-image:url(/images/{{ page.header }}/header.jpg)">
     <div class="container">
-      <a class="logo" href="/">Yuri λrtemev</a>
-      <nav>
-        <a href="/">Блог</a>
-        <a href="/projects.html">Проекты</a>
-        <a href="/about.html">Обо мне</a>     
-        <br>
-        <a href="https://github.com/artemeff">GitHub</a>
-        <a href="https://twitter.com/artemeff">Twitter</a>
-        <a href="https://coderwall.com/artemeff">Coderwall</a>
-      </nav>
+      <div id="logo">
+        <div id="flipping_card">
+          <div class="front">
+            Yuri λrtemev
+          </div>
+          <div class="back">
+            <img src="/images/photo.png">
+          </div>
+        </div>
+      </div>
+      <section id="navigation">
+        <nav>
+          <a href="/">Блог</a>
+          <a href="/projects.html">Проекты</a>
+        </nav>
+        <nav>
+          <a href="https://github.com/artemeff">GitHub</a>
+          <a href="https://twitter.com/artemeff">Twitter</a>
+        </nav>
+      </section>
     </div>
   </header>
 
@@ -41,11 +51,33 @@
   <footer></footer>
 
   <script>
-    var parallax = document.getElementById('parallax');
-    
-    window.onscroll = function() {
-      if (window.pageYOffset < 400) {
-        parallax.style.backgroundPosition = '50%' + (-window.pageYOffset / 4) + 'px';
+    window.onload = function() {
+      var prlx = document.getElementById('parallax'),
+          logo = document.getElementById('logo'),
+          back = document.getElementById('back'),
+          nav  = document.getElementById('navigation');
+      
+      window.onscroll = function() {
+        if (window.pageYOffset < 400) {
+          prlx.style.backgroundPosition = '50%' + (-window.pageYOffset / 4) + 'px';
+        }
+      }
+
+      logo.onclick = function(e) {
+        e.preventDefault();
+
+        if (this.className == 'active') {
+          this.className = '';
+          nav.className = '';
+          logo.style.height = '160px';
+        } else {
+          this.className = 'active';
+          nav.className = 'active';
+
+          setTimeout(function() {
+            logo.style.height = '200px';
+          }, 500);
+        }
       }
     }
 
