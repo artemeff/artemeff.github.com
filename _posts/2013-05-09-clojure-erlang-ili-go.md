@@ -1,6 +1,5 @@
 ---
 layout:     post
-header:     clojure-erlang-ili-go
 title:      Clojure, Erlang или Go?
 date:       2013-05-09
 ---

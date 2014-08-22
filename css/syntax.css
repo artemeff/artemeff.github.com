@@ -1,5 +1,5 @@
-.highlight  { background: #f8f8f8; margin-bottom: 1em; padding: 10px 15px; font-size: 12px; line-height: 18px }
-.highlight .c { color: #999988; font-style: italic } /* Comment */
+.highlight  { background: #f8f8f8; margin-bottom: 1em; padding: 10px 15px; font-size: 0.8em; line-height: 20px }
+.highlight .c { color: #999988 } /* Comment */
 .highlight .err { color: #a61717; background-color: #e3d2d2 } /* Error */
 .highlight .k { font-weight: bold } /* Keyword */
 .highlight .o { font-weight: bold } /* Operator */

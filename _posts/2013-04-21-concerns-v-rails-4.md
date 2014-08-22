@@ -1,6 +1,5 @@
 ---
 layout:     post
-header:     concerns-v-rails-4
 title:      Concerns в Rails 4
 date:       2013-04-21
 ---

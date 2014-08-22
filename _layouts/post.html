@@ -1,16 +1,20 @@
 ---
 layout: default
+back:      true
+back_link: /blog.html
+back_text: blog
 ---
 
-<article class="post post-full">
-  <h1 class="post-title">{{ page.title }}</h1>
-  <span class="post-date">{{ page.date | date: "%d.%m.%Y" }}</span>
+<article>
+  <div class="date">
+    {{ page.date | date: "%d/%m/%Y" }}
+  </div>
 
-  <div class="post-content">
+  <div class="content">
     {{ content }}
   </div>
 
-  <div class="post-comments">
+  <div class="comments">
     {% include comments.html %}
   </div>
 </article>

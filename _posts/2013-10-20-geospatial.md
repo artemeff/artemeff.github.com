@@ -1,6 +1,5 @@
 ---
 layout:     post
-header:     geospatial
 title:      Geospatial
 date:       2013-10-20 11:09:00 +0400
 ---

@@ -1,24 +1,47 @@
 ---
-layout: default
-header: main
-colors: light
+layout: landing
 title:  Yuri Artemev
 ---
 
 <section>
-  {% assign post = site.posts.first %}
-  <article class="post post-prime">
-    <h1 class="post-title"><a href="{{ post.url }}">{{ post.title }}</a></h1>
-    <span class="post-meta">{{ post.date | date: "%-d %B" }}</span>
-    <div class="post-content">
-      {{ post.excerpt }}
+  <header>
+    <div class="container">
+      <h1>Yuri λrtemev</h1>
+      <h3>Ruby & Erlang programmer, Haskell newbie; Working at <a href="https://mylapka.com">Lapka</a></h3>
+      <h4>GitHub <a href="https://github.com/artemeff">artemeff</a>; Twitter: <a href="https://twitter.com/artemeff">@artemeff</a></h4>
     </div>
-  </article>
+  </header>
+</section>
 
-  {% for post in site.posts %}
-    <article class="post post-preview">
-      <span class="post-date">{{ post.date | date: "%d.%m.%Y" }}</span>
-      <h2 class="post-title"><a href="{{ post.url }}">{{ post.title }}</a></h2>
-    </article>
-  {% endfor %}
-</div>
+<section>
+  <div id="blog">
+    <h2>Blog <small><a href="/blog.html">all articles</a></small></h2>
+    <ul>
+      {% for post in site.posts limit:3 %}
+        <li><a href="{{ post.url }}">{{ post.title }}</a><span>{{ post.date | date: "%d/%m/%Y" }}</span></li>
+      {% endfor %}
+    </ul>
+  </div>
+</section>
+
+<section>
+  <div id="projects">
+    <h2>Projects</h2>
+    <ul>
+      <li>Working on API and third-party services at <a href="https://mylapka.com">Lapka</a></li>
+      <li>Build <a href="https://github.com/artemeff">open source software</a></li>
+    </ul>
+  </div>
+</section>
+
+<section>
+  <footer>
+    <h2>Contacts</h2>
+    <ul>
+      <li><a href="mailto:i@artemeff.com">i@artemeff.com</a></li>
+      <li>DM on <a href="https://twitter.com/artemeff">twitter</a></li>
+      <li>Skype <a href="skype:artemeff.com?chat">artemeff.com</a></li>
+      <li>vk.com <a href="https://vk.com/yuri_artemev">yuri_artemev</a></li>
+    </ul>
+  </footer>
+</section>

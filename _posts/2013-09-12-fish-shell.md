@@ -1,6 +1,5 @@
 ---
 layout:     post
-header:     fish-shell
 title:      fish shell
 date:       2013-09-12 21:52:00 +0400
 ---

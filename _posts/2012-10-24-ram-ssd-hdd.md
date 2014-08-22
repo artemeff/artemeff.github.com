@@ -1,6 +1,5 @@
 ---
 layout:     post
-header:     ram-ssd-hdd
 title:      Тестируем RAM, SSD и HDD на скорость
 date:       2012-10-24
 ---
