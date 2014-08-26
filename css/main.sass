@@ -77,14 +77,14 @@ code
 /* Landing
    ----------- */
 
-@mixin center-box($height)
+@mixin center-box($width, $height)
   position: absolute
   top: 50%
   left: 50%
-  width: 800px
+  width: $width
   height: $height
   margin:
-    left: -400px
+    left: $width / -2
     top: $height / -2
 
 #landing
@@ -94,25 +94,21 @@ code
   height: 100%
   cursor: default
 
-  & > section
+  header
     position: relative
     width: 100%
     height: 100%
 
-  h2
-    font:
-      weight: 300
-      size: 1.8em
+    .container
+      @include center-box(800px, 170px)
 
-  header
-    @include center-box(170px)
-
-    h1, h3
-      font-weight: 300
+  section ul
+    margin: 0 0 30px 0
+    padding: 0 0 0 20px
+    li
+      list-style: none
 
   #blog
-    @include center-box(180px)
-
     small
       margin-left: 10px
       font:
@@ -126,18 +122,20 @@ code
       font-weight: 300
       margin-left: 10px
 
-  #projects
-    @include center-box(150px)
-
   footer
-    @include center-box(210px)
+    border-top: 1px solid #ccc
+    margin: 100px auto 50px
+    padding-top: 50px
 
-  #blog, #projects, footer
     ul
       margin: 0
-      padding: 0 0 0 20px
+      padding: 0
+      text-align: center
+
       li
         list-style: none
+        display: inline-block
+        margin: 0 10px
 
 /* Main
    ----------- */
@@ -176,18 +174,8 @@ article
 
 @media screen and (max-width: 900px)
   #landing
-    & > section
-      height: auto !important
-
-    header, #blog, #projects, footer
-      position: relative
-      top: 20%
-      left: auto
-      margin: 0 auto
-      width: 80%
-
-    .container
-      width: auto
+    header .container
+      @include center-box(600px, 170px)
 
     header
       h1, h3, h4
@@ -202,7 +190,21 @@ article
       top: -50px !important
       left: 10px !important
 
+@media screen and (max-width: 800px)
+  #landing
+    .container
+      width: 100%
+      box-sizing: border-box
+      padding: 0 20px
+
 @media screen and (max-width: 600px)
+  #landing
+    header .container
+      @include center-box(240px, 170px)
+      h3 span
+        display: block
+        height: 0
+
   article .content img
     width: 100%
     display: inline-block
@@ -213,4 +215,4 @@ article
     font-size: 0.8em
 
     h1
-      font-size: 1.5em
+      font-size: 2em
