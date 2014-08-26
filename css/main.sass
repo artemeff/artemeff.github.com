@@ -132,36 +132,12 @@ code
   footer
     @include center-box(210px)
 
-  header, #blog, #projects, footer
-    width: 800px
-
   #blog, #projects, footer
     ul
       margin: 0
       padding: 0 0 0 20px
       li
         list-style: none
-
-.disabled-onepage-scroll #landing
-  header, #blog, #projects, footer
-    position: relative
-    top: 20%
-    left: auto
-    margin: 0 auto
-    width: 80%
-
-  .container
-    width: auto
-
-@media screen and (max-width: 500px)
-  .onepage-wrapper .ops-section
-    height: auto !important
-
-  #landing
-    font-size: 0.8em
-
-    h1
-      font-size: 1.5em
 
 /* Main
    ----------- */
@@ -199,6 +175,24 @@ article
     color: #aaa
 
 @media screen and (max-width: 900px)
+  #landing
+    & > section
+      height: auto !important
+
+    header, #blog, #projects, footer
+      position: relative
+      top: 20%
+      left: auto
+      margin: 0 auto
+      width: 80%
+
+    .container
+      width: auto
+
+    header
+      h1, h3, h4
+        text-align: center
+
   #main
     .container
       width: auto
@@ -213,3 +207,10 @@ article
     width: 100%
     display: inline-block
     margin: 0 !important
+
+@media screen and (max-width: 500px)
+  #landing
+    font-size: 0.8em
+
+    h1
+      font-size: 1.5em
