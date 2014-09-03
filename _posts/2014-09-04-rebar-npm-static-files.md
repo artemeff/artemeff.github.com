@@ -123,7 +123,9 @@ React.renderComponent(
 // priv/source/js/components/hello.js
 /** @jsx React.DOM */
 
-module.exports = require('react').createClass({
+var React = require('react');
+
+module.exports = React.createClass({
   render: function() {
     return (
       <div id="hello">Hello, world!</div>
