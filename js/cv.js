@@ -1,6 +1,6 @@
 (function() {
   var gitHubUserUrl = 'https://api.github.com/users/artemeff';
-  var gitHubToken = '2fd711b19edcde167f78ff8ffd1a44a0b727c62c';
+  var gitHubToken = '97b0edb1396e876a054ce20f8ffbe2985b1f53ab';
   var fetchedData = [];
   var nanobar = new Nanobar({bg: '#555'});
 
