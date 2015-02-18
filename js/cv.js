@@ -6,8 +6,8 @@
 
   nanobar.go(5);
 
-  var width = 400,
-      height = 400,
+  var width = 350,
+      height = 350,
       radius = Math.min(width, height) / 2,
       innerRadius = 0.3 * radius;
 
@@ -205,13 +205,13 @@
 
     svg.append("svg:text")
       .attr("class", "score")
-      .attr("dy", ".35em")
+      .attr("dy", ".25em")
       .attr("text-anchor", "middle")
       .text(formatBytes(score));
 
     svg.append("svg:text")
       .attr("class", "score-span")
-      .attr("dy", "2.5em")
+      .attr("dy", "2em")
       .attr("text-anchor", "middle")
       .text('of open-source code');
 
