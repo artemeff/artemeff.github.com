@@ -183,7 +183,8 @@ article {
   }
   .share {
     margin: 100px 0 100px 100px;
-    .uptolike-buttons {
+    .pluso-engine {
+      margin-top: 8px;
       display: inline-block;
       vertical-align: middle;
     }
@@ -348,7 +349,7 @@ article {
       left: 10px !important;
     }
   }
-  .share {
+  article .share {
     margin: 10px 0;
   }
 }
