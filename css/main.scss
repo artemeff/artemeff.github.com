@@ -100,21 +100,30 @@ pre code {
   width: 100%;
   height: 100%;
   cursor: default;
+
+  h1 {
+    font-weight: 200;
+  }
+
   header {
     position: relative;
     width: 100%;
     height: 100%;
+
     .container {
       @include center-box(800px, 170px);
     }
   }
+
   section ul {
     margin: 0 0 30px 0;
     padding: 0 0 0 20px;
+
     li {
       list-style: none;
     }
   }
+
   #blog {
     small {
       margin-left: 10px;
@@ -122,24 +131,29 @@ pre code {
         weight: 300;
         size: 0.6em;
       };
+
       a {
         border-bottom-width: 2px;
       }
     }
+
     span {
       color: #cccccc;
       font-weight: 300;
       margin-left: 10px;
     }
   }
+
   footer {
     border-top: 1px solid #cccccc;
     margin: 100px auto 50px;
     padding-top: 50px;
+
     ul {
       margin: 0;
       padding: 0;
       text-align: center;
+
       li {
         list-style: none;
         display: inline-block;
@@ -157,6 +171,7 @@ pre code {
   margin-bottom: 60px !important;
   text-align: center;
   position: relative;
+
   #back {
     position: absolute;
     top: 0px;
@@ -172,23 +187,28 @@ article {
     text-align: center;
     color: #bbbbbb;
   }
+
   .content {
     h3 {
       font-size: 1.6em;
     }
+
     img {
       display: block;
       margin: 20px auto;
     }
   }
+
   .share {
     margin: 100px 0 100px 100px;
+
     .pluso-engine {
       margin-top: 8px;
       display: inline-block;
       vertical-align: middle;
     }
   }
+
   blockquote {
     display: block;
     margin: 1em 40px;
@@ -333,22 +353,26 @@ article {
     header .container {
       @include center-box(600px, 170px);
     }
+
     header {
       h1, h3, h4 {
         text-align: center;
       }
     }
   }
+
   #main {
     .container {
       width: auto;
       padding: 0 10px;
     }
+
     #back {
       top: -50px !important;
       left: 10px !important;
     }
   }
+
   article .share {
     margin: 10px 0;
   }
@@ -368,12 +392,14 @@ article {
   #landing {
     header .container {
       @include center-box(240px, 170px);
+
       h3 span {
         display: block;
         height: 0;
       }
     }
   }
+
   article .content img {
     width: 100%;
     display: inline-block;
@@ -384,6 +410,7 @@ article {
 @media screen and (max-width: 500px) {
   #landing {
     font-size: 0.8em;
+
     h1 {
       font-size: 2em;
     }
