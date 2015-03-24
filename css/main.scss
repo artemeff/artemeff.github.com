@@ -8,10 +8,11 @@ body, html {
 
 body {
   color: #555555;
-  font-family: "Fira Sans", sans-serif;
+  font-family: 'Avenir Next', 'Helvetica Neue', Helvetica, Arial, sans-serif;
   font-size: 1em;
-  font-weight: 300;
+  font-weight: 400;
   line-height: 2em;
+  text-rendering: optimizeLegibility;
 }
 
 a {
@@ -28,7 +29,7 @@ a {
 }
 
 h1, h2, h3, h4, h5 {
-  font-weight: 300;
+  font-weight: 400;
 }
 
 ul {
@@ -42,7 +43,7 @@ hr {
 }
 
 code {
-  font-family: "Source Code Pro", monospace;
+  font-family: 'Consolas', monospace;
   font-weight: 300;
   padding: 0px 3px;
   background-color: #f8f8f8;
@@ -101,10 +102,6 @@ pre code {
   height: 100%;
   cursor: default;
 
-  h1 {
-    font-weight: 200;
-  }
-
   header {
     position: relative;
     width: 100%;
@@ -127,10 +124,7 @@ pre code {
   #blog {
     small {
       margin-left: 10px;
-      font: {
-        weight: 300;
-        size: 0.6em;
-      };
+      font-size: 0.6em;
 
       a {
         border-bottom-width: 2px;
@@ -139,7 +133,6 @@ pre code {
 
     span {
       color: #cccccc;
-      font-weight: 300;
       margin-left: 10px;
     }
   }
