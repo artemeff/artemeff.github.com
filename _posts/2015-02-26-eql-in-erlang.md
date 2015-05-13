@@ -88,8 +88,8 @@ DROP TABLE users;
 Утилита создает в вашей базе данных таблицу `migrations`, в которой хранятся накатанные миграции с временем их применения. Чтобы запустить процесс миграции достаточно выполнить:
 
 ```erlang
-> pgsql_migraion:migrate(Conn, "priv/migrations").
-> pgsql_migraion:migrate(Conn, "1424987800", "priv/migrations"). % откат/накат до версии
+> pgsql_migration:migrate(Conn, "priv/migrations").
+> pgsql_migration:migrate(Conn, "1424987800", "priv/migrations"). % откат/накат до версии
 ```
 
 И все будет сделано за вас. Каждая миграция оборачивается в транзакцию, процесс миграции останавливается, если он завершается с ошибками.
