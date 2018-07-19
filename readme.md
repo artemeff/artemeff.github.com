@@ -1,1 +1,1 @@
-### [Yuri Artemev; blog](http://artemeff.com)
+### [Yuri Artemev; blog](https://artemeff.com)
